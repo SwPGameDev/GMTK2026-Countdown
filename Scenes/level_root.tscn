@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cumagk44ukg0o"]
+
+[ext_resource type="Script" uid="uid://b3igsuhey1did" path="res://Characters/Player/player_behavior.gd" id="1_1d17y"]
+[ext_resource type="Texture2D" uid="uid://bultyjmo7wo2v" path="res://icon.svg" id="1_a65vn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mecyt"]
+radius = 64.0
+
+[node name="LevelRoot" type="Node2D" unique_id=656589481]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1970055625]
+position = Vector2(1056, 471)
+motion_mode = 1
+script = ExtResource("1_1d17y")
+
+[node name="Movement" type="Node" parent="Player" unique_id=991118580]
+
+[node name="Combat" type="Node" parent="Player" unique_id=735056569]
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player" unique_id=1220173425]
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1501611355]
+shape = SubResource("CircleShape2D_mecyt")
