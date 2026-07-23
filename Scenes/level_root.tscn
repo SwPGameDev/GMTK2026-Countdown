@@ -2,23 +2,128 @@
 
 [ext_resource type="Script" uid="uid://b3igsuhey1did" path="res://Characters/Player/player_behavior.gd" id="1_1d17y"]
 [ext_resource type="Texture2D" uid="uid://bultyjmo7wo2v" path="res://icon.svg" id="1_a65vn"]
+[ext_resource type="Script" uid="uid://bq1ferc7lbf0i" path="res://Characters/Player/player_movement.gd" id="2_qk2tg"]
+[ext_resource type="Script" uid="uid://c8u885x5g3eet" path="res://Characters/Player/player_combat.gd" id="3_xu20g"]
+[ext_resource type="Texture2D" uid="uid://criepnx1jb55g" path="res://Assets/Art/keyboard-&-mouse_sheet_default.png" id="4_d0c8c"]
+[ext_resource type="Texture2D" uid="uid://dvyx0jdm43rhm" path="res://Assets/Art/crosshairs_tilesheet_white.png" id="4_dl1xj"]
+[ext_resource type="Texture2D" uid="uid://bb7rm257km35w" path="res://Assets/Art/crosshairs_tilesheet_black.png" id="5_dlk3h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mecyt"]
 radius = 64.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ov11"]
+size = Vector2(128, 128)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qk2tg"]
+
 [node name="LevelRoot" type="Node2D" unique_id=656589481]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1970055625]
-position = Vector2(1056, 471)
-motion_mode = 1
+[node name="Player" type="RigidBody2D" parent="." unique_id=1156913171]
+physics_interpolation_mode = 1
+gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_1d17y")
 
-[node name="Movement" type="Node" parent="Player" unique_id=991118580]
+[node name="Movement" type="Node" parent="Player" unique_id=991118580 node_paths=PackedStringArray("rb")]
+script = ExtResource("2_qk2tg")
+rb = NodePath("..")
+move_speed = 300.0
+acceleration = 3000.0
+deceleration = 3000.0
 
-[node name="Combat" type="Node" parent="Player" unique_id=735056569]
+[node name="Combat" type="Node" parent="Player" unique_id=735056569 node_paths=PackedStringArray("cam", "cursor_sprite", "hurtbox", "player_sprite")]
+script = ExtResource("3_xu20g")
+cam = NodePath("../Camera2D")
+cursor_sprite = NodePath("Cursor")
+white_texture = ExtResource("4_dl1xj")
+gray_texture = ExtResource("5_dlk3h")
+hurtbox = NodePath("../PlayerSprite/HurtBox")
+player_sprite = NodePath("../PlayerSprite")
+
+[node name="Cursor" type="Sprite2D" parent="Player/Combat" unique_id=110097773]
+texture = ExtResource("4_dl1xj")
+hframes = 20
+vframes = 10
+frame = 148
+
+[node name="Prompt" type="Node" parent="Player" unique_id=1404095149]
+
+[node name="GrabPrompt" type="Sprite2D" parent="Player/Prompt" unique_id=1819691387]
+position = Vector2(-545, -265)
+texture = ExtResource("4_d0c8c")
+hframes = 17
+vframes = 16
+frame = 176
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player" unique_id=1220173425]
 texture = ExtResource("1_a65vn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1501611355]
+[node name="HurtBox" type="Area2D" parent="Player/PlayerSprite" unique_id=1099576007]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/PlayerSprite/HurtBox" unique_id=1474303716]
+polygon = PackedVector2Array(32, -128, -32, -128, -55, -69, 55, -69)
+
+[node name="collider" type="CollisionShape2D" parent="Player" unique_id=1501611355]
 shape = SubResource("CircleShape2D_mecyt")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1480441368]
+
+[node name="Props" type="Node2D" parent="." unique_id=201667220]
+
+[node name="Obstacles" type="Node2D" parent="Props" unique_id=1017225569]
+
+[node name="Obstacle" type="StaticBody2D" parent="Props/Obstacles" unique_id=1857685115]
+position = Vector2(189, -265)
+
+[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle" unique_id=420120692]
+modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle" unique_id=1177818472]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="Obstacle2" type="StaticBody2D" parent="Props/Obstacles" unique_id=1391684545]
+position = Vector2(350, 137)
+
+[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle2" unique_id=652658127]
+modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle2" unique_id=169132536]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="Obstacle3" type="StaticBody2D" parent="Props/Obstacles" unique_id=1159407987]
+position = Vector2(-401, 49)
+
+[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle3" unique_id=1834390310]
+modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle3" unique_id=1495811204]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="Obstacle4" type="StaticBody2D" parent="Props/Obstacles" unique_id=515743923]
+position = Vector2(-240, 451)
+
+[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle4" unique_id=335934570]
+modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle4" unique_id=49548214]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="Moveables" type="Node2D" parent="Props" unique_id=2006215085]
+
+[node name="Box" type="RigidBody2D" parent="Props/Moveables" unique_id=471074581]
+position = Vector2(-228, -203)
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_qk2tg")
+gravity_scale = 0.0
+linear_damp = 10.0
+
+[node name="ob-sprite" type="Sprite2D" parent="Props/Moveables/Box" unique_id=398355801]
+modulate = Color(0.60044956, 0.4291903, 4.813075e-07, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Moveables/Box" unique_id=2030109902]
+shape = SubResource("RectangleShape2D_2ov11")
