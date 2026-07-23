@@ -33,15 +33,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") :
 		click_pos = get_viewport().get_mouse_position()
 		cursor_sprite.texture = gray_texture
+		TryHit(hurtbox)
 		
-		var hit_bodies : Array[Node2D] = hurtbox.get_overlapping_bodies()
-		if not hit_bodies.is_empty() :
-			for bod in hit_bodies :
-				print(bod.name)
-				if bod is RigidBody2D :
-					print("WEOW")
-					var dir : Vector2 = (bod.global_position - player_sprite.global_position).normalized()
-					bod.apply_impulse(dir * hit_force)
+		
 		
 	if Input.is_action_just_released("attack") :
 		cursor_sprite.texture = white_texture
@@ -53,3 +47,15 @@ func _process(delta: float) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE :
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+
+func TryHit(area : Area2D) :
+	var hit_bodies : Array[Node2D] = area.get_overlapping_bodies()
+	if not hit_bodies.is_empty() :
+		for bod in hit_bodies :
+			print(bod.name)
+			if bod is RigidBody2D :
+				print("Rigid")
+				var dir : Vector2 = (bod.global_position - player_sprite.global_position).normalized()
+				bod.apply_impulse(dir * hit_force)
+				if bod is Enemy :
+					pass

@@ -7,16 +7,84 @@
 [ext_resource type="Texture2D" uid="uid://criepnx1jb55g" path="res://Assets/Art/keyboard-&-mouse_sheet_default.png" id="4_d0c8c"]
 [ext_resource type="Texture2D" uid="uid://dvyx0jdm43rhm" path="res://Assets/Art/crosshairs_tilesheet_white.png" id="4_dl1xj"]
 [ext_resource type="Texture2D" uid="uid://bb7rm257km35w" path="res://Assets/Art/crosshairs_tilesheet_black.png" id="5_dlk3h"]
+[ext_resource type="Script" uid="uid://copk5ftvuawo6" path="res://Characters/Enemies/enemy.gd" id="8_701yh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mecyt"]
-radius = 64.0
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mecyt"]
+vertices = PackedVector2Array(222, 265, 478, 265, 941.3125, 432.21875, -112, 435.89844, -112, 323, 222, 9, -368, 323, -273, 177, 61, -137, -529, 177, -931.5, 438.77344, 317, -137, 317, -393, 945.6719, -436.1875, 478, 9, -938.47656, -441.79688, 61, -393, -273, -79, -368, 436.79688, -529, -79)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 0, 4, 6, 7, 8), PackedInt32Array(9, 7, 6, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 13, 12, 16), PackedInt32Array(13, 2, 1, 14), PackedInt32Array(11, 14, 5, 8), PackedInt32Array(8, 7, 17, 16), PackedInt32Array(6, 18, 10), PackedInt32Array(9, 10, 15, 19), PackedInt32Array(19, 15, 16, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1003, -506, 1010, -500, 1005, 496, -995, 503)])
+agent_radius = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ov11"]
 size = Vector2(128, 128)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mecyt"]
+radius = 64.0
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qk2tg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kx5h3"]
+radius = 64.0
+
 [node name="LevelRoot" type="Node2D" unique_id=656589481]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=788943840]
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+polygon = PackedVector2Array(-1000, -500, 1000, -500, 1000, 500, -1000, 500)
+uv = PackedVector2Array(39, -7, 279, -25, 397, 37, 33, 65)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2045214840]
+navigation_polygon = SubResource("NavigationPolygon_mecyt")
+
+[node name="Obstacles" type="Node2D" parent="NavigationRegion2D" unique_id=1473975003]
+
+[node name="Obstacle" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=643828076]
+position = Vector2(189, -265)
+
+[node name="ob-sprite" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Obstacle" unique_id=1500870801]
+modulate = Color(0.61024547, 0.35753065, 0.2865806, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles/Obstacle" unique_id=542023524]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D/Obstacles/Obstacle" unique_id=1448509254]
+
+[node name="Obstacle2" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=768995850]
+position = Vector2(350, 137)
+
+[node name="ob-sprite" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Obstacle2" unique_id=326582697]
+modulate = Color(0.61024547, 0.35753065, 0.2865806, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles/Obstacle2" unique_id=1286429339]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D/Obstacles/Obstacle2" unique_id=183426090]
+
+[node name="Obstacle3" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=1996958956]
+position = Vector2(-401, 49)
+
+[node name="ob-sprite" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Obstacle3" unique_id=1965210811]
+modulate = Color(0.61024547, 0.35753065, 0.2865806, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles/Obstacle3" unique_id=763728599]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D/Obstacles/Obstacle3" unique_id=1262609931]
+
+[node name="Obstacle4" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=1433518591]
+position = Vector2(-240, 451)
+
+[node name="ob-sprite" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Obstacle4" unique_id=287674003]
+modulate = Color(0.61024547, 0.35753065, 0.2865806, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles/Obstacle4" unique_id=2122878929]
+shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D/Obstacles/Obstacle4" unique_id=1342654264]
 
 [node name="Player" type="RigidBody2D" parent="." unique_id=1156913171]
 physics_interpolation_mode = 1
@@ -70,48 +138,6 @@ shape = SubResource("CircleShape2D_mecyt")
 
 [node name="Props" type="Node2D" parent="." unique_id=201667220]
 
-[node name="Obstacles" type="Node2D" parent="Props" unique_id=1017225569]
-
-[node name="Obstacle" type="StaticBody2D" parent="Props/Obstacles" unique_id=1857685115]
-position = Vector2(189, -265)
-
-[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle" unique_id=420120692]
-modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
-texture = ExtResource("1_a65vn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle" unique_id=1177818472]
-shape = SubResource("RectangleShape2D_2ov11")
-
-[node name="Obstacle2" type="StaticBody2D" parent="Props/Obstacles" unique_id=1391684545]
-position = Vector2(350, 137)
-
-[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle2" unique_id=652658127]
-modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
-texture = ExtResource("1_a65vn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle2" unique_id=169132536]
-shape = SubResource("RectangleShape2D_2ov11")
-
-[node name="Obstacle3" type="StaticBody2D" parent="Props/Obstacles" unique_id=1159407987]
-position = Vector2(-401, 49)
-
-[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle3" unique_id=1834390310]
-modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
-texture = ExtResource("1_a65vn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle3" unique_id=1495811204]
-shape = SubResource("RectangleShape2D_2ov11")
-
-[node name="Obstacle4" type="StaticBody2D" parent="Props/Obstacles" unique_id=515743923]
-position = Vector2(-240, 451)
-
-[node name="ob-sprite" type="Sprite2D" parent="Props/Obstacles/Obstacle4" unique_id=335934570]
-modulate = Color(0.78986216, 1.4439226e-07, 0.4080256, 1)
-texture = ExtResource("1_a65vn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Obstacles/Obstacle4" unique_id=49548214]
-shape = SubResource("RectangleShape2D_2ov11")
-
 [node name="Moveables" type="Node2D" parent="Props" unique_id=2006215085]
 
 [node name="Box" type="RigidBody2D" parent="Props/Moveables" unique_id=471074581]
@@ -127,3 +153,29 @@ texture = ExtResource("1_a65vn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Moveables/Box" unique_id=2030109902]
 shape = SubResource("RectangleShape2D_2ov11")
+
+[node name="TestEnemies" type="Node2D" parent="." unique_id=144096547]
+
+[node name="TestEnemy" type="CharacterBody2D" parent="TestEnemies" unique_id=1798808975 node_paths=PackedStringArray("debug_target", "navigation_agent")]
+position = Vector2(421, -136)
+script = ExtResource("8_701yh")
+debug_enabled = true
+debug_target = NodePath("../../Player")
+movement_speed = 60.0
+navigation_agent = NodePath("NavigationAgent2D")
+metadata/_custom_type_script = "uid://copk5ftvuawo6"
+
+[node name="PlayerSprite" type="Sprite2D" parent="TestEnemies/TestEnemy" unique_id=440672243]
+modulate = Color(0.765128, 1.973361e-06, 0.4613818, 1)
+texture = ExtResource("1_a65vn")
+
+[node name="HurtBox" type="Area2D" parent="TestEnemies/TestEnemy/PlayerSprite" unique_id=1921057499]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TestEnemies/TestEnemy/PlayerSprite/HurtBox" unique_id=798616757]
+polygon = PackedVector2Array(32, -128, -32, -128, -55, -69, 55, -69)
+
+[node name="collider" type="CollisionShape2D" parent="TestEnemies/TestEnemy" unique_id=1580826005]
+shape = SubResource("CircleShape2D_kx5h3")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="TestEnemies/TestEnemy" unique_id=323709595]
+debug_enabled = true
