@@ -1,44 +1,41 @@
 extends Node
 
+@export var white_texture : Texture2D
+@export var gray_texture : Texture2D
+
+@export var cam : Camera3D
+@export var rb : RigidBody3D
+@export var hurtbox : Area3D
+@export var hit_force : float = 500
+
 var mouse_pos : Vector2
-var click_pos : Vector2
+var click_pos : Vector3
 
-@export var cam : Camera2D
-
-@export var cursor_sprite : Sprite2D
-@export var white_texture : CompressedTexture2D
-@export var gray_texture : CompressedTexture2D
-
-@export var hurtbox : Area2D
-var hit_force : float = 2500
-
-@export var player_sprite : Sprite2D
 @export var rotation_speed : float = TAU * 2
 @export var rotation_offset : float = 90 ## Degrees
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	pass
 
 func _process(delta: float) -> void:
-	mouse_pos = cam.get_global_mouse_position()
+	#mouse_pos = cam.get_global_mouse_position()
 	
-	var mouse_dir : Vector2 = (mouse_pos - player_sprite.global_position).normalized()
-	player_sprite.rotation = rotate_toward(
-		player_sprite.rotation,
-		mouse_dir.angle() + deg_to_rad(rotation_offset),
-		rotation_speed * delta)
+	#var mouse_dir : Vector2 = (mouse_pos - player_sprite.global_position).normalized()
 	
-	cursor_sprite.global_position = mouse_pos
+	
 	
 	if Input.is_action_just_pressed("attack") :
-		click_pos = get_viewport().get_mouse_position()
-		cursor_sprite.texture = gray_texture
-		TryHit(hurtbox)
+		Input.set_custom_mouse_cursor(gray_texture, Input.CURSOR_ARROW, Vector2(32, 32))
 		
+		var click_results : Dictionary = Utility.MouseViewPortRayCast()
 		
-		
+		if not click_results.is_empty() :
+			click_pos = click_results.position
+			TryHit(hurtbox)
+	
 	if Input.is_action_just_released("attack") :
-		cursor_sprite.texture = white_texture
+		Input.set_custom_mouse_cursor(white_texture, Input.CURSOR_ARROW, Vector2(32, 32))
 	
 	
 	
@@ -48,14 +45,14 @@ func _process(delta: float) -> void:
 		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE :
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
-func TryHit(area : Area2D) :
-	var hit_bodies : Array[Node2D] = area.get_overlapping_bodies()
+func TryHit(area : Area3D) :
+	var hit_bodies : Array[Node3D] = area.get_overlapping_bodies()
 	if not hit_bodies.is_empty() :
 		for bod in hit_bodies :
 			print(bod.name)
-			if bod is RigidBody2D :
+			if bod is RigidBody3D :
 				print("Rigid")
-				var dir : Vector2 = (bod.global_position - player_sprite.global_position).normalized()
+				var dir : Vector3 = (bod.global_position - rb.global_position).normalized()
 				bod.apply_impulse(dir * hit_force)
 				if bod is Enemy :
 					pass

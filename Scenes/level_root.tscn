@@ -10,9 +10,9 @@
 [ext_resource type="Script" uid="uid://copk5ftvuawo6" path="res://Characters/Enemies/enemy.gd" id="8_701yh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mecyt"]
-vertices = PackedVector2Array(222, 265, 478, 265, 941.3125, 432.21875, -112, 435.89844, -112, 323, 222, 9, -368, 323, -273, 177, 61, -137, -529, 177, -931.5, 438.77344, 317, -137, 317, -393, 945.6719, -436.1875, 478, 9, -938.47656, -441.79688, 61, -393, -273, -79, -368, 436.79688, -529, -79)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 0, 4, 6, 7, 8), PackedInt32Array(9, 7, 6, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 13, 12, 16), PackedInt32Array(13, 2, 1, 14), PackedInt32Array(11, 14, 5, 8), PackedInt32Array(8, 7, 17, 16), PackedInt32Array(6, 18, 10), PackedInt32Array(9, 10, 15, 19), PackedInt32Array(19, 15, 16, 17)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1003, -506, 1010, -500, 1005, 496, -995, 503)])
+vertices = PackedVector2Array(222, 265, 478, 265, -112, 579, -112, 323, 375, -154, 375, -410, 2143.3594, -2087.7578, 2102.6094, 2073.4531, 478, 9, -2055.8203, -2072.2266, 119, -410, -273, 177, 222, 9, -368, 323, -2044.1719, 2103.5313, -368, 579, -529, 177, -273, -79, 119, -154, -529, -79)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 6, 5, 10), PackedInt32Array(11, 12, 0, 3, 13), PackedInt32Array(1, 7, 14, 2), PackedInt32Array(15, 2, 14), PackedInt32Array(15, 14, 9, 16), PackedInt32Array(16, 11, 13), PackedInt32Array(12, 11, 17, 18, 4), PackedInt32Array(19, 9, 10, 18, 17), PackedInt32Array(16, 13, 15), PackedInt32Array(19, 16, 9), PackedInt32Array(8, 12, 4), PackedInt32Array(8, 7, 1)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2120, -2136, 2208, -2152, 2166, 2137, -2108, 2168)])
 agent_radius = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ov11"]
@@ -30,7 +30,7 @@ radius = 64.0
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=788943840]
 color = Color(0.20871013, 0.20871016, 0.20871013, 1)
-polygon = PackedVector2Array(-1000, -500, 1000, -500, 1000, 500, -1000, 500)
+polygon = PackedVector2Array(-2000, -2000, 2000, -2000, 2000, 2000, -2000, 2000)
 uv = PackedVector2Array(39, -7, 279, -25, 397, 37, 33, 65)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2045214840]
@@ -39,7 +39,7 @@ navigation_polygon = SubResource("NavigationPolygon_mecyt")
 [node name="Obstacles" type="Node2D" parent="NavigationRegion2D" unique_id=1473975003]
 
 [node name="Obstacle" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=643828076]
-position = Vector2(189, -265)
+position = Vector2(247, -282)
 
 [node name="ob-sprite" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Obstacle" unique_id=1500870801]
 modulate = Color(0.61024547, 0.35753065, 0.2865806, 1)

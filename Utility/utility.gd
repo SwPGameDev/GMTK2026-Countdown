@@ -2,7 +2,7 @@ extends Node3D
 
 var physics_space : PhysicsDirectSpaceState3D # Needs to be updated when things are moved
 
-func DoRayCast(origin : Vector3, end : Vector3, length : float, can_collide_with_areas : bool, exclude_col : CollisionObject3D) -> Dictionary :
+func TryRayCast(origin : Vector3, end : Vector3, length : float, can_collide_with_areas : bool, exclude_col : CollisionObject3D) -> Dictionary :
 	physics_space = get_world_3d().direct_space_state
 	var result : Dictionary
 	var query = PhysicsRayQueryParameters3D.create(origin, end * length)
