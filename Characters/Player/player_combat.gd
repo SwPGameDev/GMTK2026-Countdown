@@ -8,6 +8,9 @@ extends Node
 @export var hurtbox : Area3D
 @export var hit_force : float = 500
 
+@export var look_at_click_length : float = 1
+var _look_at_click_timer : float = 0
+
 var mouse_pos : Vector2
 var click_pos : Vector3
 

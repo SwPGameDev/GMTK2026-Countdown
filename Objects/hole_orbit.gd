@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if follow_mode :
-		goal_pos = target.global_position
+		goal_pos = Vector3(target.global_position.x, hole.global_position.y, target.global_position.z)
 		hole.global_position = hole.global_position.move_toward(goal_pos, follow_speed * delta)
 	else :
 		goal_pos = Vector3(x_pos, 0, z_pos)

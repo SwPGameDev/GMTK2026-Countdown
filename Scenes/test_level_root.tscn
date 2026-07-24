@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dhvnwvpx5whb4"]
 
+[ext_resource type="Script" uid="uid://ciscis5a6b4hn" path="res://Utility/cam_orbit.gd" id="1_cxou5"]
 [ext_resource type="Texture2D" uid="uid://caq0s0f30xffp" path="res://Assets/Art/ProtoTextures/Orange/texture_09.png" id="1_ociva"]
 [ext_resource type="Script" uid="uid://8h5bqe68uocy" path="res://Objects/hole_orbit.gd" id="1_rhk1q"]
 [ext_resource type="Script" uid="uid://bl8pjtooon77a" path="res://Objects/hole_collection.gd" id="2_3h7jc"]
@@ -10,7 +11,9 @@
 [ext_resource type="Script" uid="uid://c8u885x5g3eet" path="res://Characters/Player/player_combat.gd" id="4_3h7jc"]
 [ext_resource type="Texture2D" uid="uid://br4oa8pxx3fnu" path="res://Assets/Art/white_crosshair159.png" id="7_accxd"]
 [ext_resource type="Texture2D" uid="uid://os7wx7m1pftr" path="res://Assets/Art/black_crosshair159.png" id="8_rkyeb"]
+[ext_resource type="Script" uid="uid://cm4k1agc2ndts" path="res://Characters/Player/player_look_controller.gd" id="10_8daep"]
 [ext_resource type="Texture2D" uid="uid://cq31kohhhrmr2" path="res://Assets/Art/ProtoTextures/Purple/texture_03.png" id="10_rkyeb"]
+[ext_resource type="Script" uid="uid://bcre3plqm1wi3" path="res://Characters/Player/player_grab.gd" id="12_ya3bo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ociva"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -76,6 +79,9 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 texture_filter = 2
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3h7jc"]
+friction = 0.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6kjqo"]
 albedo_texture = ExtResource("2_rhk1q")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
@@ -101,6 +107,9 @@ size = Vector3(0.9, 0.9, 0.9)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2ov11"]
+radius = 1.5
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ov11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_accxd"]
@@ -122,8 +131,18 @@ environment = SubResource("Environment_2b8ko")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=100971760]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=100971760 node_paths=PackedStringArray("target")]
+physics_interpolation_mode = 1
 transform = Transform3D(-1, 7.161255e-08, -5.0143647e-08, 0, 0.57357645, 0.81915206, 8.742278e-08, 0.81915206, -0.57357645, 0, 15, -8.5)
+script = ExtResource("1_cxou5")
+target = NodePath("../Player")
+offset = Vector3(0, 15, -8.5)
+followSpeed = 50.0
+interpolatePos = false
+enable_orbit = false
+capture_mouse = false
+camOrbitSens = 1.0
+enable_zoom = false
 
 [node name="DaHole" type="AnimatableBody3D" parent="." unique_id=809221299]
 physics_interpolation_mode = 1
@@ -132,9 +151,11 @@ collision_layer = 2
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_wtb5e")
 
-[node name="HoleMovement" type="Node" parent="DaHole" unique_id=1921497303 node_paths=PackedStringArray("hole")]
+[node name="HoleMovement" type="Node" parent="DaHole" unique_id=1921497303 node_paths=PackedStringArray("hole", "target")]
 script = ExtResource("1_rhk1q")
 hole = NodePath("..")
+follow_mode = true
+target = NodePath("../../Player")
 rotate_speed = 0.5
 
 [node name="Collection" type="Node" parent="DaHole" unique_id=1686011434]
@@ -197,20 +218,23 @@ size = Vector3(50, 0.5, 50)
 material = SubResource("StandardMaterial3D_2ov11")
 
 [node name="Player" type="RigidBody3D" parent="." unique_id=140008279]
+physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
 axis_lock_angular_x = true
+axis_lock_angular_y = true
 axis_lock_angular_z = true
-linear_damp = 1.0
-angular_damp = 5.0
+physics_material_override = SubResource("PhysicsMaterial_3h7jc")
 script = ExtResource("2_accxd")
 metadata/_custom_type_script = "uid://b3igsuhey1did"
 
-[node name="Movement" type="Node" parent="Player" unique_id=990017971 node_paths=PackedStringArray("rb")]
+[node name="Movement" type="Node" parent="Player" unique_id=990017971 node_paths=PackedStringArray("cam", "rb", "mesh")]
 script = ExtResource("3_rkyeb")
+cam = NodePath("../../Camera3D")
 rb = NodePath("..")
+mesh = NodePath("../Mesh")
 move_speed = 10.0
-acceleration = 10.0
-deceleration = 10.0
+acceleration = 250.0
+deceleration = 250.0
 
 [node name="Combat" type="Node" parent="Player" unique_id=2009053598 node_paths=PackedStringArray("cam", "rb", "hurtbox")]
 script = ExtResource("4_3h7jc")
@@ -219,6 +243,21 @@ gray_texture = ExtResource("8_rkyeb")
 cam = NodePath("../../Camera3D")
 rb = NodePath("..")
 hurtbox = NodePath("../Mesh/Hurtbox")
+
+[node name="LookCon" type="Node" parent="Player" unique_id=2081959947 node_paths=PackedStringArray("player_grab", "player_movement", "player_combat", "rb", "mesh")]
+script = ExtResource("10_8daep")
+debug = true
+look_mode = 3
+player_grab = NodePath("../Grab")
+player_movement = NodePath("../Movement")
+player_combat = NodePath("../Combat")
+rb = NodePath("..")
+mesh = NodePath("../Mesh")
+
+[node name="Grab" type="Node" parent="Player" unique_id=237989687 node_paths=PackedStringArray("player", "interact_sphere")]
+script = ExtResource("12_ya3bo")
+player = NodePath("..")
+interact_sphere = NodePath("../InteractChecker")
 
 [node name="Mesh" type="MeshInstance3D" parent="Player" unique_id=823280007]
 mesh = SubResource("CapsuleMesh_2ov11")
@@ -234,20 +273,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 shape = SubResource("BoxShape3D_yqpnd")
 debug_color = Color(0.8, 0, 0.16470589, 0.54901963)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1945414731]
+[node name="Collider" type="CollisionShape3D" parent="Player" unique_id=1945414731]
 shape = SubResource("CapsuleShape3D_2ov11")
+
+[node name="InteractChecker" type="Area3D" parent="Player" unique_id=1374145577]
+collision_layer = 10
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/InteractChecker" unique_id=194803819]
+shape = SubResource("SphereShape3D_2ov11")
+debug_color = Color(0.7969186, 0.5628137, 1, 0.41960785)
 
 [node name="Obstacles" type="Node3D" parent="." unique_id=438514080]
 
 [node name="Moveables" type="Node3D" parent="." unique_id=1860907]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="Moveables" unique_id=1006099495]
+[node name="Box" type="RigidBody3D" parent="Moveables" unique_id=1006099495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, 5.5)
+collision_layer = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Moveables/RigidBody3D" unique_id=105064953]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Moveables/Box" unique_id=105064953]
 shape = SubResource("BoxShape3D_2ov11")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Moveables/RigidBody3D" unique_id=468031755]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Moveables/Box" unique_id=468031755]
 mesh = SubResource("BoxMesh_6kjqo")
 
 [connection signal="body_entered" from="DaHole/HoleZone" to="DaHole/Collection" method="_on_hole_zone_body_entered"]
