@@ -3,7 +3,7 @@ class_name PlayerBehavior
 
 @export_group("References")
 @onready var gameplay_manager : GameplayManager = %GamePlayManger
-@export var mesh : MeshInstance3D
+@export var mesh : Node3D
 @export var cam : Camera3D
 @export var player_movement : PlayerMovement
 @export var player_combat : PlayerCombat

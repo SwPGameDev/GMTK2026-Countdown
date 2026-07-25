@@ -16,7 +16,6 @@ enum LookMode {None, Holding, Click, Mouse, Move}
 @export var rotationSpeed : float = TAU * 2
 
 @export var player : PlayerBehavior
-@export var mesh: MeshInstance3D
 
 @export var holding : bool = false
 @export var is_attacking : bool = false
@@ -88,17 +87,17 @@ func _process(delta: float) -> void:
 	if look_target != Vector3.ZERO :
 		var rotation_target : Quaternion = Basis.looking_at(look_target, Vector3.UP, true).orthonormalized()
 		# Only y axis rotation go here
-		var new_rotation : Quaternion = mesh.basis.orthonormalized().slerp(rotation_target, delta * rotationSpeed)
+		var new_rotation : Quaternion = player.mesh.basis.orthonormalized().slerp(rotation_target, delta * rotationSpeed)
 		
-		mesh.basis = new_rotation
+		player.mesh.basis = new_rotation
 	
-	last_look_target = mesh.basis.z
+	last_look_target = player.mesh.basis.z
 	
 	
 	if (debug) :
-		DebugDraw.draw_line_relative_thick(mesh.global_position, mesh.global_basis.x, 2, Color.RED)
-		DebugDraw.draw_line_relative_thick(mesh.global_position, mesh.global_basis.y, 2, Color.GREEN)
-		DebugDraw.draw_line_relative_thick(mesh.global_position, mesh.global_basis.z, 2, Color.BLUE)
+		DebugDraw.draw_line_relative_thick(player.mesh.global_position, player.mesh.global_basis.x, 2, Color.RED)
+		DebugDraw.draw_line_relative_thick(player.mesh.global_position, player.mesh.global_basis.y, 2, Color.GREEN)
+		DebugDraw.draw_line_relative_thick(player.mesh.global_position, player.mesh.global_basis.z, 2, Color.BLUE)
 		
 		#DebugDraw.draw_line_relative_pointy(rb.global_position, rb.linear_velocity, 2, Color(1, 1, 0, 0.25))
 		DebugDraw.draw_line_relative_pointy(look_target + player.global_position, Vector3.UP, 10, Color.CYAN)

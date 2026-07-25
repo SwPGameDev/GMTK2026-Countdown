@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cjlw7av3ddwyb"]
+
+[ext_resource type="PackedScene" uid="uid://cl0kylk3ia163" path="res://Assets/Art/Models/knight_animations.glb" id="1_1obsu"]
+
+[node name="knight_animations" unique_id=1405535657 instance=ExtResource("1_1obsu")]
+
+[node name="metarig" parent="." index="0" unique_id=1465446877]
+transform = Transform3D(0.81287056, -0.055212937, -0.5798212, -0.0028020437, 0.99511445, -0.098687135, 0.58243734, 0.08184456, 0.8087447, 0.04564113, -0.106805265, -0.09232157)
+
+[node name="Skeleton3D" parent="metarig" index="0" unique_id=2038858779]
+bones/1/rotation = Quaternion(0.046763718, -0.012306053, -0.01746582, 0.9986775)
+bones/2/rotation = Quaternion(0.17510143, -0.024370322, -0.008871684, 0.98420876)
+bones/3/rotation = Quaternion(0.001966351, -0.024129855, -0.00950559, 0.9996618)
+bones/4/rotation = Quaternion(-0.15424345, 0.043842666, 0.015260219, 0.9869417)
+bones/5/rotation = Quaternion(-0.10106183, 0.043101806, 0.017243741, 0.9937965)
+bones/6/rotation = Quaternion(-0.6123357, -0.30823907, -0.32685584, 0.65053743)
+bones/7/rotation = Quaternion(-0.20176415, 0.5864775, -0.7115882, 0.33011767)
+bones/8/rotation = Quaternion(0.65424174, -0.12783276, -0.08557356, 0.7404753)
+bones/9/rotation = Quaternion(0.35266462, -0.0521813, 0.08016941, 0.9308478)
+bones/10/rotation = Quaternion(-0.61876595, 0.25911683, 0.36229688, 0.64709204)
+bones/11/rotation = Quaternion(-0.27642265, -0.59209126, 0.696937, 0.2954612)
+bones/12/rotation = Quaternion(0.6263308, 0.18090703, 0.13688576, 0.74581814)
+bones/13/rotation = Quaternion(0.2858738, 0.0485565, -0.0131230615, 0.9569463)
+bones/19/rotation = Quaternion(0.90263665, 0.12325311, -0.051975146, 0.40908962)
+bones/20/rotation = Quaternion(0.82192934, 0.07339687, 0.12421218, 0.5510141)
+bones/21/rotation = Quaternion(-0.693147, -0.19860679, 0.19321744, 0.66540945)
+bones/22/rotation = Quaternion(0.047349047, 0.969673, 0.026205309, -0.23833975)
+bones/23/rotation = Quaternion(0.9448872, -0.16494673, 0.087015994, 0.26908922)
+bones/24/rotation = Quaternion(0.48756397, -0.07536285, -0.06613039, 0.8673111)
+bones/25/rotation = Quaternion(-0.8313356, 0.15911436, -0.2013487, 0.49297303)
+bones/26/rotation = Quaternion(0.057845917, 0.9762457, -0.08556895, 0.1904631)
+
+[node name="hand_R" parent="metarig/Skeleton3D" index="0" unique_id=635841590]
+transform = Transform3D(-0.78116727, -0.39953697, -0.47973707, -0.46596932, -0.13829648, 0.8739259, -0.41551176, 0.906225, -0.078139186, -0.16116482, 1.0475042, 0.21096301)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1753631135]
+autoplay = &"run_forward"

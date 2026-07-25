@@ -1,12 +1,25 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://e6mq15osidom"]
 
-[ext_resource type="Texture2D" uid="uid://co6lpq5dj10ib" path="res://Assets/Art/Textures/Retro Fantasy Textures/wall_stone_depth.png" id="1_8i7pg"]
+[ext_resource type="Texture2D" uid="uid://c5jcgscxltqcw" path="res://Assets/Art/Textures/cliff_rocks_07_1k/cliff_rocks_07_basecolor_1k.png" id="1_6b4l0"]
+[ext_resource type="Texture2D" uid="uid://cs3ett4s32jpb" path="res://Assets/Art/Textures/cliff_rocks_07_1k/cliff_rocks_07_ambientocclusion_1k.png" id="2_sh36w"]
+[ext_resource type="Texture2D" uid="uid://bxbrn21bf0hrh" path="res://Assets/Art/Textures/cliff_rocks_07_1k/cliff_rocks_07_height_1k.png" id="3_v02pj"]
+[ext_resource type="Texture2D" uid="uid://bdgccpp4kek3f" path="res://Assets/Art/Textures/cliff_rocks_07_1k/cliff_rocks_07_metallic_1k.png" id="4_jy1uo"]
+[ext_resource type="Texture2D" uid="uid://brp3ij8r0rdgg" path="res://Assets/Art/Textures/cliff_rocks_07_1k/cliff_rocks_07_normal_gl_1k.png" id="5_xmmbp"]
+[ext_resource type="Texture2D" uid="uid://6yvrhh81iw1q" path="res://Assets/Art/Textures/cliff_rocks_07_1k/cliff_rocks_07_roughness_1k.png" id="6_sjv2v"]
 
 [resource]
-albedo_texture = ExtResource("1_8i7pg")
+albedo_texture = ExtResource("1_6b4l0")
+metallic = 1.0
 metallic_specular = 0.1
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_offset = Vector3(0.25, 0, 0)
+metallic_texture = ExtResource("4_jy1uo")
+roughness_texture = ExtResource("6_sjv2v")
+normal_enabled = true
+normal_texture = ExtResource("5_xmmbp")
+ao_enabled = true
+ao_texture = ExtResource("2_sh36w")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_v02pj")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
 uv1_triplanar = true
 texture_filter = 2
 stencil_flags = 2

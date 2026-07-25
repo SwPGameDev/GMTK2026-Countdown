@@ -200,7 +200,7 @@ label_settings = SubResource("LabelSettings_yqpnd")
 horizontal_alignment = 1
 
 [node name="PlayerSpawnPoint" type="Node3D" parent="." unique_id=1586389328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerSpawnPoint" unique_id=1451365276]
 cast_shadow = 0
@@ -215,7 +215,7 @@ light_color = Color(0.93297535, 0.89204097, 0.88305235, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=733976788 instance=ExtResource("10_npfg7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=100971760 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 1
