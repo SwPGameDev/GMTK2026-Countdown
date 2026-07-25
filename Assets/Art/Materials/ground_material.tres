@@ -1,11 +1,17 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://cruloqftqxvaw"]
 
-[ext_resource type="Texture2D" uid="uid://cmfn6eevnlqjt" path="res://Assets/Art/Textures/Retro Fantasy Textures/floor_ground_dirt.png" id="1_xp5y1"]
+[ext_resource type="Texture2D" uid="uid://cd6ivwnf466e4" path="res://Assets/Art/Textures/ground_with_rocks_01_4k/ground_with_rocks_01_color_4k.png" id="1_4iaeb"]
+[ext_resource type="Texture2D" uid="uid://bik7rrgy2ncst" path="res://Assets/Art/Textures/ground_with_rocks_01_4k/ground_with_rocks_01_normal_gl_4k.png" id="2_waqrp"]
+[ext_resource type="Texture2D" uid="uid://fa4sgkdqf3a2" path="res://Assets/Art/Textures/ground_with_rocks_01_4k/ground_with_rocks_01_roughness_4k.png" id="3_cd5y8"]
 
 [resource]
 transparency = 1
-albedo_texture = ExtResource("1_xp5y1")
+albedo_texture = ExtResource("1_4iaeb")
 metallic_specular = 0.1
+roughness_texture = ExtResource("3_cd5y8")
+normal_enabled = true
+normal_scale = 4.43
+normal_texture = ExtResource("2_waqrp")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 texture_filter = 2

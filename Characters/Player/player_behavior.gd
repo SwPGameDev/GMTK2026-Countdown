@@ -3,6 +3,7 @@ class_name PlayerBehavior
 
 @export_group("References")
 @onready var gameplay_manager : GameplayManager = %GamePlayManger
+@export var mesh : MeshInstance3D
 @export var cam : Camera3D
 @export var player_movement : PlayerMovement
 @export var player_combat : PlayerCombat
@@ -22,6 +23,9 @@ var current_hp : float
 @export var move_force : float = 500
 @export var hold_force : float = 1000
 
+func _ready() -> void:
+	if cam == null :
+		cam = get_viewport().get_camera_3d()
 
 func ReleaseGrab() :
 	player_grab.TryReleaseHold()

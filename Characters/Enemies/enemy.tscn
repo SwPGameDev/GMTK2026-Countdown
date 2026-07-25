@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bhth35wwwljm0"]
+
+[ext_resource type="Script" uid="uid://copk5ftvuawo6" path="res://Characters/Enemies/enemy.gd" id="1_oooen"]
+[ext_resource type="Material" uid="uid://2m6od2bngr61" path="res://Assets/Art/Materials/enemy_material.tres" id="2_p6hek"]
+[ext_resource type="Texture2D" uid="uid://54pqgwpl0ua8" path="res://Assets/Art/ProtoTextures/Dark/texture_01.png" id="3_dlowh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3h7jc"]
+friction = 0.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2ov11"]
+material = ExtResource("2_p6hek")
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npfg7"]
+albedo_texture = ExtResource("3_dlowh")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 2
+stencil_mode = 3
+stencil_flags = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_yqpnd"]
+material = SubResource("StandardMaterial3D_npfg7")
+size = Vector3(0.7, 0.35, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yqpnd"]
+size = Vector3(0.9, 0.9, 0.9)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
+
+[node name="Enemy" type="RigidBody3D" unique_id=542992792 node_paths=PackedStringArray("navigation_agent")]
+physics_interpolation_mode = 1
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_3h7jc")
+script = ExtResource("1_oooen")
+navigation_agent = NodePath("NavigationAgent3D")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=420431788]
+mesh = SubResource("CapsuleMesh_2ov11")
+
+[node name="Face" type="MeshInstance3D" parent="Mesh" unique_id=616055168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0.25)
+mesh = SubResource("BoxMesh_yqpnd")
+
+[node name="Hurtbox" type="Area3D" parent="Mesh" unique_id=275739027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hurtbox" unique_id=1232126709]
+shape = SubResource("BoxShape3D_yqpnd")
+debug_color = Color(0.8, 0, 0.16470589, 0.54901963)
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=976303765]
+shape = SubResource("CapsuleShape3D_2ov11")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2127849830]

@@ -1,18 +1,30 @@
 extends RigidBody3D
 class_name Enemy
 
+@export_group("Debug")
 @export var debug_enabled : bool
 @export var debug_target : Node3D
 
-var target : Node3D = null
-@export var movement_speed: float = 4.0
+@export_group("Refernces")
 @export var navigation_agent: NavigationAgent3D
+
+@export_group("Tracking")
+@export var target : Node3D = null
+@export var current_hp : float
+@export var has_spawned_box : bool = false
+
+@export_group("Stats")
+@export var movement_speed: float = 4.0
+@export var max_hp : float = 4
+
 
 func _ready() -> void:
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	
 	if debug_enabled :
 		target = debug_target
+	else :
+		TryGetTarget()
 
 func _process(_delta: float) -> void:
 	if target != null :
@@ -32,8 +44,61 @@ func _physics_process(_delta):
 	else:
 		_on_velocity_computed(new_velocity)
 
+
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
 func _on_velocity_computed(safe_velocity: Vector3):
 	linear_velocity = safe_velocity
+
+func TryGetTarget() :
+	var player : Node3D = get_tree().get_first_node_in_group("Player")
+	if player != null :
+		target = player
+
+func TakeHit(damage : float) :
+	current_hp -= damage
+	if current_hp <= 0 :
+		Die()
+
+func SpawnBox() :
+	has_spawned_box = true
+	# blah
+
+func Die() :
+	
+	print("OOF")
+	target = null
+	
+	
+	# Ragdoll
+	axis_lock_angular_x = false
+	axis_lock_angular_y = false
+	axis_lock_angular_z = false
+	
+	var random_angle: float = randf_range(0.0, TAU)
+	Vector2.from_angle(random_angle)
+	var rand_vect : Vector3
+	
+	
+	apply_central_impulse(Vector3.UP * randf_range(-50, 50))
+	
+	
+	
+	
+	navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+	physics_material_override.friction = 1
+	
+	
+	
+	
+	if not has_spawned_box :
+		SpawnBox()
+	
+
+
+
+
+#

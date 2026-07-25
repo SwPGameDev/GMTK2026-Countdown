@@ -4,21 +4,14 @@
 [ext_resource type="Script" uid="uid://ciscis5a6b4hn" path="res://Utility/cam_orbit.gd" id="1_cxou5"]
 [ext_resource type="Script" uid="uid://8h5bqe68uocy" path="res://Objects/hole_orbit.gd" id="1_rhk1q"]
 [ext_resource type="Script" uid="uid://bl8pjtooon77a" path="res://Objects/hole_collection.gd" id="2_3h7jc"]
-[ext_resource type="Script" uid="uid://b3igsuhey1did" path="res://Characters/Player/player_behavior.gd" id="2_accxd"]
 [ext_resource type="FontFile" uid="uid://bvlispu5syulv" path="res://Assets/Art/Font/PlayfairDisplay-Regular.ttf" id="2_kvgwe"]
-[ext_resource type="Texture2D" uid="uid://54pqgwpl0ua8" path="res://Assets/Art/ProtoTextures/Dark/texture_01.png" id="3_2b8ko"]
-[ext_resource type="Script" uid="uid://bq1ferc7lbf0i" path="res://Characters/Player/player_movement.gd" id="3_rkyeb"]
-[ext_resource type="Script" uid="uid://c8u885x5g3eet" path="res://Characters/Player/player_combat.gd" id="4_3h7jc"]
 [ext_resource type="Material" uid="uid://3uno4i3o5381" path="res://Assets/Art/Materials/tunnel_exterior_mat.tres" id="6_n6bns"]
 [ext_resource type="Material" uid="uid://bdwfs07uvt1cb" path="res://Assets/Art/Materials/tunnel_interior_mat.tres" id="6_ob7cl"]
-[ext_resource type="Texture2D" uid="uid://br4oa8pxx3fnu" path="res://Assets/Art/white_crosshair159.png" id="7_accxd"]
 [ext_resource type="Material" uid="uid://cruloqftqxvaw" path="res://Assets/Art/Materials/ground_material.tres" id="7_n6bns"]
-[ext_resource type="Texture2D" uid="uid://os7wx7m1pftr" path="res://Assets/Art/black_crosshair159.png" id="8_rkyeb"]
 [ext_resource type="Material" uid="uid://e6mq15osidom" path="res://Assets/Art/Materials/pillar_material.tres" id="9_npfg7"]
-[ext_resource type="Script" uid="uid://cm4k1agc2ndts" path="res://Characters/Player/player_look_controller.gd" id="10_8daep"]
-[ext_resource type="Script" uid="uid://bcre3plqm1wi3" path="res://Characters/Player/player_grab.gd" id="12_ya3bo"]
+[ext_resource type="PackedScene" uid="uid://dg5oxntuv0aub" path="res://Characters/Player/player.tscn" id="10_npfg7"]
+[ext_resource type="PackedScene" uid="uid://bhth35wwwljm0" path="res://Characters/Enemies/enemy.tscn" id="13_cxou5"]
 [ext_resource type="Script" uid="uid://dpjtb5mhujud5" path="res://Objects/valuable_box.gd" id="14_b8iw0"]
-[ext_resource type="Material" uid="uid://biylfpfdw7o85" path="res://Assets/Art/Materials/player_material.tres" id="17_eywy4"]
 [ext_resource type="Material" uid="uid://df0d4a0s8nsw1" path="res://Assets/Art/Materials/box_material.tres" id="19_ob7cl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yqpnd"]
@@ -51,14 +44,6 @@ sky = SubResource("Sky_rhk1q")
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wtb5e"]
 friction = 0.0
 rough = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6kjqo"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_yqpnd"]
-material = SubResource("StandardMaterial3D_6kjqo")
-top_radius = 1.5
-bottom_radius = 1.5
-height = 13.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2ov11"]
 height = 13.5
@@ -119,40 +104,16 @@ height = 20.0
 radial_segments = 16
 rings = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxou5"]
+size = Vector3(3, 2.5, 3)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6kjqo"]
 size = Vector3(3, 3, 3)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_2ov11"]
-vertices = PackedVector3Array(-49.5, 0.20000002, 0, -1.5, 0.20000002, 0, -1.5, 0.20000002, -1, 0, 0.20000002, -1.5, 0, 0.20000002, -49.5, -49.5, 0.20000002, -49.5, 1, 0.20000002, -1.5, 1.5, 0.20000002, 0, 49.5, 0.20000002, 0, 49.5, 0.20000002, -49.5, -0.5, 5.2, -0.5, -0.5, 5.2, 0.5, 0.5, 5.2, 0.5, 0.5, 5.2, -0.5, -0.25, 0.20000002, -0.25, -0.25, 0.20000002, 0.25, 0.25, 0.20000002, 0.25, 0.25, 0.20000002, -0.25, -1.5, 0.20000002, 1, 0, 0.20000002, 49.5, 0, 0.20000002, 1.5, -49.5, 0.20000002, 49.5, 1, 0.20000002, 1.5, 49.5, 0.20000002, 49.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 2, 4), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 0), PackedInt32Array(6, 3, 4), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 4), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(0, 1, 18), PackedInt32Array(20, 19, 18), PackedInt32Array(18, 19, 21), PackedInt32Array(18, 21, 0), PackedInt32Array(19, 20, 22), PackedInt32Array(7, 8, 22), PackedInt32Array(22, 8, 23), PackedInt32Array(22, 23, 19)]
+vertices = PackedVector3Array(-15.5, 0.20000002, -2, -13.75, 0.20000002, -2, -5, 0.20000002, -16.25, -5, 0.20000002, -18, -99.5, 0.20000002, -0.5, -3.5, 0.20000002, -99.5, -99.5, 0.20000002, -99.5, -3.5, 0.20000002, -18.5, -16, 0.20000002, -0.5, -2, 0.20000002, -18, -2, 0.20000002, -16.25, 13, 0.20000002, -15.5, 14.25, 0.20000002, -15.75, 14.25, 0.20000002, -99.5, 15.25, 0.20000002, -15.5, 99.5, 0.20000002, -15.5, 99.5, 0.20000002, -99.5, -4, 5.2, -17.5, -4, 5.2, -16.5, -3, 5.2, -16.5, -3, 5.2, -17.5, -3.75, 0.20000002, -17.25, -3.75, 0.20000002, -16.75, -3.25, 0.20000002, -16.75, -3.25, 0.20000002, -17.25, -13, 0.20000002, -0.25, -1.5, 0.20000002, -0.25, -1.5, 0.20000002, -1, -13, 0.20000002, -1.5, -0.75, 0.20000002, -1.5, -2, 0.20000002, -16, -2.5, 0.20000002, -15.5, -4.5, 0.20000002, -15.5, 12.5, 0.20000002, -15, 0.75, 0.20000002, -1.5, 13.25, 0.20000002, -12.75, 12.5, 0.20000002, -13.5, 17.75, 0.20000002, 0.5, 24, 0.20000002, 8.25, 25.5, 0.20000002, 8.25, 17.75, 0.20000002, -1, 15.25, 0.20000002, -12.75, 15.5, 0.20000002, -1.75, 17, 0.20000002, -1.75, 15.75, 0.20000002, -13.25, 15.75, 0.20000002, -15, 26.25, 0.20000002, 9, 26.25, 0.20000002, 10, 99.5, 0.20000002, 10, 14, 5.2, -13.5, 14.75, 5.2, -13.75, 14.5, 5.2, -14.75, 13.5, 5.2, -14.5, 14.5, 0.20000002, -1, 1.5, 0.20000002, -1, 1.5, 0.20000002, -0.25, 14.5, 0.20000002, -0.25, -15, 5.2, -1, -15, 5.2, 0, -14, 5.2, 0, -14, 5.2, -1, -14.75, 0.20000002, -0.75, -14.75, 0.20000002, -0.25, -14.25, 0.20000002, -0.25, -14.25, 0.20000002, -0.75, 16, 5.2, 0.5, 16.75, 5.2, 0.25, 16.5, 5.2, -0.75, 15.5, 5.2, -0.5, -12.5, 0.20000002, 15.75, -13.75, 0.20000002, 1, -15.5, 0.20000002, 1, -12.5, 0.20000002, 16.5, -99.5, 0.20000002, 16.5, -0.5, 5.2, -0.5, -0.5, 5.2, 0.5, 0.5, 5.2, 0.5, 0.5, 5.2, -0.5, -13, 0.20000002, 0.5, -1.5, 0.20000002, 1, -12, 0.20000002, 15, -10, 0.20000002, 15, -9.5, 0.20000002, 15.75, -0.75, 0.20000002, 1.5, -0.25, 0.20000002, -0.25, -0.25, 0.20000002, 0.25, 0.25, 0.20000002, 0.25, 0.25, 0.20000002, -0.25, 7.75, 0.20000002, 19.5, 9, 0.20000002, 20.25, 9.75, 0.20000002, 19.25, 1.5, 0.20000002, 0.75, 14.75, 0.20000002, 0.75, 11.25, 0.20000002, 19.25, 17, 0.20000002, 1.5, 23, 0.20000002, 9, 23, 0.20000002, 10.5, 15.5, 0.20000002, 1.5, 12.25, 0.20000002, 20.25, 23.75, 0.20000002, 11.25, -9.5, 0.20000002, 17.5, -10.25, 0.20000002, 18, 1, 0.20000002, 1.5, 24.5, 5.2, 10.5, 25.25, 5.2, 10.25, 25, 5.2, 9.25, 24, 5.2, 9.5, 12.25, 0.20000002, 21.75, 11.5, 0.20000002, 22.5, 25.5, 0.20000002, 11.5, 10.75, 0.20000002, 99.5, 99.5, 0.20000002, 99.5, 26.25, 0.20000002, 10.75, 10.75, 0.20000002, 22.5, -11.5, 5.2, 16, -11.5, 5.2, 17, -10.5, 5.2, 17, -10.5, 5.2, 16, -11.25, 0.20000002, 16.25, -11.25, 0.20000002, 16.75, -10.75, 0.20000002, 16.75, -10.75, 0.20000002, 16.25, -11, 0.20000002, 99.5, -11, 0.20000002, 18, -12.5, 0.20000002, 17.5, -99.5, 0.20000002, 99.5, 9.25, 0.20000002, 22, 10.5, 5.2, 21.5, 11.25, 5.2, 21.25, 11, 5.2, 20.25, 10, 5.2, 20.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 5), PackedInt32Array(5, 0, 4), PackedInt32Array(5, 4, 6), PackedInt32Array(5, 7, 3), PackedInt32Array(0, 8, 4), PackedInt32Array(9, 11, 10), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 7), PackedInt32Array(12, 7, 5), PackedInt32Array(12, 5, 13), PackedInt32Array(12, 13, 14), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(27, 28, 29), PackedInt32Array(29, 28, 1), PackedInt32Array(29, 1, 32), PackedInt32Array(32, 1, 2), PackedInt32Array(29, 32, 31), PackedInt32Array(30, 10, 33), PackedInt32Array(33, 10, 11), PackedInt32Array(29, 30, 34), PackedInt32Array(34, 30, 36), PackedInt32Array(34, 36, 35), PackedInt32Array(30, 33, 36), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 40), PackedInt32Array(43, 42, 41), PackedInt32Array(41, 44, 43), PackedInt32Array(43, 44, 40), PackedInt32Array(45, 14, 15), PackedInt32Array(48, 47, 46), PackedInt32Array(46, 39, 40), PackedInt32Array(44, 45, 40), PackedInt32Array(40, 45, 46), PackedInt32Array(46, 45, 48), PackedInt32Array(48, 45, 15), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(42, 53, 41), PackedInt32Array(41, 53, 35), PackedInt32Array(56, 55, 54), PackedInt32Array(53, 56, 35), PackedInt32Array(35, 56, 54), PackedInt32Array(35, 54, 34), PackedInt32Array(60, 59, 57), PackedInt32Array(57, 59, 58), PackedInt32Array(64, 63, 61), PackedInt32Array(61, 63, 62), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 68), PackedInt32Array(71, 70, 69), PackedInt32Array(69, 72, 71), PackedInt32Array(71, 72, 8), PackedInt32Array(8, 72, 4), PackedInt32Array(4, 72, 73), PackedInt32Array(77, 76, 74), PackedInt32Array(74, 76, 75), PackedInt32Array(25, 26, 78), PackedInt32Array(78, 26, 79), PackedInt32Array(80, 69, 70), PackedInt32Array(78, 79, 70), PackedInt32Array(70, 79, 83), PackedInt32Array(70, 83, 81), PackedInt32Array(81, 83, 82), PackedInt32Array(70, 81, 80), PackedInt32Array(87, 86, 84), PackedInt32Array(84, 86, 85), PackedInt32Array(90, 89, 88), PackedInt32Array(55, 56, 91), PackedInt32Array(91, 56, 92), PackedInt32Array(91, 92, 90), PackedInt32Array(91, 90, 88), PackedInt32Array(92, 93, 90), PackedInt32Array(95, 94, 38), PackedInt32Array(38, 94, 37), PackedInt32Array(97, 96, 92), PackedInt32Array(92, 96, 93), PackedInt32Array(93, 96, 98), PackedInt32Array(94, 95, 97), PackedInt32Array(97, 95, 96), PackedInt32Array(96, 99, 98), PackedInt32Array(88, 101, 100), PackedInt32Array(83, 102, 82), PackedInt32Array(82, 102, 100), PackedInt32Array(100, 102, 88), PackedInt32Array(88, 102, 91), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 106), PackedInt32Array(107, 98, 99), PackedInt32Array(107, 99, 108), PackedInt32Array(108, 99, 109), PackedInt32Array(109, 48, 108), PackedInt32Array(108, 48, 110), PackedInt32Array(110, 48, 111), PackedInt32Array(112, 47, 48), PackedInt32Array(109, 112, 48), PackedInt32Array(110, 113, 108), PackedInt32Array(117, 116, 114), PackedInt32Array(114, 116, 115), PackedInt32Array(121, 120, 118), PackedInt32Array(118, 120, 119), PackedInt32Array(123, 122, 124), PackedInt32Array(124, 122, 125), PackedInt32Array(124, 125, 73), PackedInt32Array(73, 72, 124), PackedInt32Array(89, 126, 88), PackedInt32Array(88, 126, 101), PackedInt32Array(101, 126, 123), PackedInt32Array(126, 113, 123), PackedInt32Array(123, 113, 110), PackedInt32Array(123, 110, 122), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 130)]
 cell_height = 0.1
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3h7jc"]
-friction = 0.1
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2ov11"]
-material = ExtResource("17_eywy4")
-radial_segments = 32
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npfg7"]
-albedo_texture = ExtResource("3_2b8ko")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-texture_filter = 2
-stencil_mode = 3
-stencil_flags = 2
-
-[sub_resource type="BoxMesh" id="BoxMesh_yqpnd"]
-material = SubResource("StandardMaterial3D_npfg7")
-size = Vector3(0.7, 0.35, 0.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yqpnd"]
-size = Vector3(0.9, 0.9, 0.9)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_2ov11"]
-radius = 1.5
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b8iw0"]
 rough = true
@@ -252,12 +213,15 @@ environment = SubResource("Environment_2b8ko")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
+[node name="Player" parent="." unique_id=733976788 instance=ExtResource("10_npfg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -32)
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=100971760 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 1
-transform = Transform3D(-1, 7.161255e-08, -5.0143647e-08, 0, 0.57357645, 0.81915206, 8.742278e-08, 0.81915206, -0.57357645, 0, 15, -40.5)
+transform = Transform3D(-1, 7.161255e-08, -5.0143647e-08, 0, 0.57357645, 0.81915206, 8.742278e-08, 0.81915206, -0.57357645, 0, 11, -38)
 script = ExtResource("1_cxou5")
 target = NodePath("../Player")
-offset = Vector3(0, 16, -8.5)
+offset = Vector3(0, 10, -7)
 followSpeed = 50.0
 interpolatePos = false
 enable_orbit = false
@@ -272,16 +236,10 @@ collision_layer = 2
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_wtb5e")
 
-[node name="StencilMask" type="MeshInstance3D" parent="DaHole" unique_id=1208177168]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.75, 0)
-visible = false
-mesh = SubResource("CylinderMesh_yqpnd")
-
-[node name="HoleMovement" type="Node" parent="DaHole" unique_id=1921497303 node_paths=PackedStringArray("hole", "target")]
+[node name="HoleMovement" type="Node" parent="DaHole" unique_id=1921497303 node_paths=PackedStringArray("hole")]
 script = ExtResource("1_rhk1q")
 hole = NodePath("..")
 move_mode = 1
-target = NodePath("../../Player")
 rotate_speed = 0.5
 
 [node name="Collection" type="Node" parent="DaHole" unique_id=1686011434]
@@ -299,11 +257,11 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.75, 0)
 shape = SubResource("CylinderShape3D_2ov11")
 
-[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="DaHole" unique_id=1956638759]
+[node name="InteriorCollider" type="CollisionShape3D" parent="DaHole" unique_id=1956638759]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
 shape = SubResource("ConcavePolygonShape3D_rhk1q")
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="DaHole" unique_id=965127338]
+[node name="ExteriorCollider" type="CollisionShape3D" parent="DaHole" unique_id=965127338]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_2b8ko")
 
@@ -335,20 +293,22 @@ operation = 2
 mesh = SubResource("CylinderMesh_2ov11")
 
 [node name="CollectTrigger" type="Area3D" parent="DaHole" unique_id=366351405]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.75, 0)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DaHole/CollectTrigger" unique_id=874983309]
-shape = SubResource("BoxShape3D_6kjqo")
+shape = SubResource("BoxShape3D_cxou5")
+debug_color = Color(0.994953, 0, 0.22698432, 1)
 
 [node name="EnterTrigger" type="Area3D" parent="DaHole" unique_id=213657365]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9999998, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7499996, 0)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DaHole/EnterTrigger" unique_id=1539249630]
 shape = SubResource("BoxShape3D_6kjqo")
+debug_color = Color(0.85779065, 0.36412743, 1.92523e-07, 1)
 
 [node name="NavRegion" type="NavigationRegion3D" parent="." unique_id=1654095789]
 navigation_mesh = SubResource("NavigationMesh_2ov11")
@@ -366,85 +326,67 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
 [node name="Pillar" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=2028485053]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+use_collision = true
 radius = 1.0
 height = 5.0
 sides = 16
 material = ExtResource("9_npfg7")
 
-[node name="Player" type="RigidBody3D" parent="." unique_id=140008279 node_paths=PackedStringArray("cam", "player_movement", "player_combat", "player_look", "player_grab") groups=["Player"]]
-physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -32)
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-mass = 10.0
-physics_material_override = SubResource("PhysicsMaterial_3h7jc")
-script = ExtResource("2_accxd")
-cam = NodePath("../Camera3D")
-player_movement = NodePath("Movement")
-player_combat = NodePath("Combat")
-player_look = NodePath("LookCon")
-player_grab = NodePath("Grab")
-hold_force = 5000.0
-metadata/_custom_type_script = "uid://b3igsuhey1did"
+[node name="Pillar2" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=1693819450]
+transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, -11, 2.5, 16.5)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+material = ExtResource("9_npfg7")
 
-[node name="Movement" type="Node" parent="Player" unique_id=990017971 node_paths=PackedStringArray("level_root", "cam", "player", "mesh", "player_grab")]
-script = ExtResource("3_rkyeb")
-debug_visuals = true
-level_root = NodePath("../..")
-cam = NodePath("../../Camera3D")
-player = NodePath("..")
-mesh = NodePath("../Mesh")
-player_grab = NodePath("../Grab")
-move_mode = 1
+[node name="Pillar3" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=84458113]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -3.5, 2.5, -17)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+material = ExtResource("9_npfg7")
 
-[node name="Combat" type="Node" parent="Player" unique_id=2009053598 node_paths=PackedStringArray("cam", "rb", "hurtbox")]
-script = ExtResource("4_3h7jc")
-white_texture = ExtResource("7_accxd")
-gray_texture = ExtResource("8_rkyeb")
-cam = NodePath("../../Camera3D")
-rb = NodePath("..")
-hurtbox = NodePath("../Mesh/Hurtbox")
+[node name="Pillar4" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=747772644]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -14.5, 2.5, -0.5)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+material = ExtResource("9_npfg7")
 
-[node name="LookCon" type="Node" parent="Player" unique_id=2081959947 node_paths=PackedStringArray("player_grab", "player_movement", "player_combat", "rb", "mesh")]
-script = ExtResource("10_8daep")
-debug = true
-look_mode = 3
-player_grab = NodePath("../Grab")
-player_movement = NodePath("../Movement")
-player_combat = NodePath("../Combat")
-rb = NodePath("..")
-mesh = NodePath("../Mesh")
+[node name="Pillar5" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=228172934]
+transform = Transform3D(0.5000001, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, 0.5000001, 14.166664, 2.5, -14.166668)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+material = ExtResource("9_npfg7")
 
-[node name="Grab" type="Node" parent="Player" unique_id=237989687 node_paths=PackedStringArray("player", "interact_sphere")]
-script = ExtResource("12_ya3bo")
-player = NodePath("..")
-interact_sphere = NodePath("../InteractChecker")
+[node name="Pillar6" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=974210206]
+transform = Transform3D(-0.7071067, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071067, 10.666668, 2.5, 20.833332)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+material = ExtResource("9_npfg7")
 
-[node name="Mesh" type="MeshInstance3D" parent="Player" unique_id=823280007]
-mesh = SubResource("CapsuleMesh_2ov11")
+[node name="Pillar7" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=1170487037]
+transform = Transform3D(-0.7071067, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071067, 16.166666, 2.5, -0.16666698)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+material = ExtResource("9_npfg7")
 
-[node name="Face" type="MeshInstance3D" parent="Player/Mesh" unique_id=1215406949]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0.25)
-mesh = SubResource("BoxMesh_yqpnd")
-
-[node name="Hurtbox" type="Area3D" parent="Player/Mesh" unique_id=1011886570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Mesh/Hurtbox" unique_id=1949612911]
-shape = SubResource("BoxShape3D_yqpnd")
-debug_color = Color(0.8, 0, 0.16470589, 0.54901963)
-
-[node name="Collider" type="CollisionShape3D" parent="Player" unique_id=1945414731]
-shape = SubResource("CapsuleShape3D_2ov11")
-
-[node name="InteractChecker" type="Area3D" parent="Player" unique_id=1374145577]
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/InteractChecker" unique_id=194803819]
-shape = SubResource("SphereShape3D_2ov11")
-debug_color = Color(0.7969186, 0.5628137, 1, 0.41960785)
+[node name="Pillar8" type="CSGCylinder3D" parent="NavRegion/LevelGeo/Obstacles" unique_id=146099894]
+transform = Transform3D(0.5000001, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, 0.5000001, 24.666664, 2.5, 9.833332)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+material = ExtResource("9_npfg7")
 
 [node name="Moveables" type="Node3D" parent="." unique_id=1860907]
 
@@ -463,6 +405,11 @@ shape = SubResource("BoxShape3D_2ov11")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Moveables/Box" unique_id=468031755]
 mesh = SubResource("BoxMesh_6kjqo")
+
+[node name="Enemies" type="Node3D" parent="." unique_id=395647122]
+
+[node name="Enemy" parent="Enemies" unique_id=542992792 instance=ExtResource("13_cxou5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1, -10)
 
 [connection signal="body_entered" from="DaHole/HoleZone" to="DaHole/Collection" method="_on_hole_zone_body_entered"]
 [connection signal="body_exited" from="DaHole/HoleZone" to="DaHole/Collection" method="_on_hole_zone_body_exited"]

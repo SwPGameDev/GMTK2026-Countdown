@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://dg5oxntuv0aub"]
+
+[ext_resource type="Script" uid="uid://b3igsuhey1did" path="res://Characters/Player/player_behavior.gd" id="1_r5ew0"]
+[ext_resource type="Script" uid="uid://bq1ferc7lbf0i" path="res://Characters/Player/player_movement.gd" id="2_yhol4"]
+[ext_resource type="Script" uid="uid://c8u885x5g3eet" path="res://Characters/Player/player_combat.gd" id="3_va6lm"]
+[ext_resource type="Texture2D" uid="uid://br4oa8pxx3fnu" path="res://Assets/Art/white_crosshair159.png" id="4_u2wkb"]
+[ext_resource type="Texture2D" uid="uid://os7wx7m1pftr" path="res://Assets/Art/black_crosshair159.png" id="5_b71o8"]
+[ext_resource type="Script" uid="uid://cm4k1agc2ndts" path="res://Characters/Player/player_look_controller.gd" id="6_x58m1"]
+[ext_resource type="Script" uid="uid://bcre3plqm1wi3" path="res://Characters/Player/player_grab.gd" id="7_b6jp0"]
+[ext_resource type="Material" uid="uid://biylfpfdw7o85" path="res://Assets/Art/Materials/player_material.tres" id="8_8k5s7"]
+[ext_resource type="Texture2D" uid="uid://54pqgwpl0ua8" path="res://Assets/Art/ProtoTextures/Dark/texture_01.png" id="9_5elsd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3h7jc"]
+friction = 0.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2ov11"]
+material = ExtResource("8_8k5s7")
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npfg7"]
+albedo_texture = ExtResource("9_5elsd")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 2
+stencil_mode = 3
+stencil_flags = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_yqpnd"]
+material = SubResource("StandardMaterial3D_npfg7")
+size = Vector3(0.7, 0.35, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yqpnd"]
+size = Vector3(2, 1.5, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2ov11"]
+radius = 1.5
+
+[node name="Player" type="RigidBody3D" unique_id=733976788 node_paths=PackedStringArray("mesh", "player_movement", "player_combat", "player_look", "player_grab") groups=["Player"]]
+physics_interpolation_mode = 1
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_3h7jc")
+script = ExtResource("1_r5ew0")
+mesh = NodePath("Mesh")
+player_movement = NodePath("Movement")
+player_combat = NodePath("Combat")
+player_look = NodePath("LookCon")
+player_grab = NodePath("Grab")
+hold_force = 5000.0
+metadata/_custom_type_script = "uid://b3igsuhey1did"
+
+[node name="Movement" type="Node" parent="." unique_id=25793929 node_paths=PackedStringArray("player")]
+script = ExtResource("2_yhol4")
+player = NodePath("..")
+move_mode = 1
+
+[node name="Combat" type="Node" parent="." unique_id=1039962000 node_paths=PackedStringArray("player", "hurtbox")]
+script = ExtResource("3_va6lm")
+player = NodePath("..")
+white_texture = ExtResource("4_u2wkb")
+gray_texture = ExtResource("5_b71o8")
+hurtbox = NodePath("../Mesh/Hurtbox")
+hit_force = 50.0
+
+[node name="LookCon" type="Node" parent="." unique_id=352584327 node_paths=PackedStringArray("player", "mesh")]
+script = ExtResource("6_x58m1")
+look_mode = 3
+player = NodePath("..")
+mesh = NodePath("../Mesh")
+
+[node name="Grab" type="Node" parent="." unique_id=1667453693 node_paths=PackedStringArray("player", "interact_sphere")]
+script = ExtResource("7_b6jp0")
+player = NodePath("..")
+interact_sphere = NodePath("../InteractChecker")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=2098282957]
+mesh = SubResource("CapsuleMesh_2ov11")
+
+[node name="Face" type="MeshInstance3D" parent="Mesh" unique_id=987926051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0.25)
+mesh = SubResource("BoxMesh_yqpnd")
+
+[node name="Hurtbox" type="Area3D" parent="Mesh" unique_id=930870692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hurtbox" unique_id=1874717863]
+shape = SubResource("BoxShape3D_yqpnd")
+debug_color = Color(0.8, 0, 0.16470589, 0.54901963)
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1522535088]
+shape = SubResource("CapsuleShape3D_2ov11")
+
+[node name="InteractChecker" type="Area3D" parent="." unique_id=514472229]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractChecker" unique_id=949060535]
+shape = SubResource("SphereShape3D_2ov11")
+debug_color = Color(0.7969186, 0.5628137, 1, 0.41960785)

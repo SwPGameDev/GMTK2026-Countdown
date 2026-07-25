@@ -15,16 +15,15 @@ enum LookMode {None, Holding, Click, Mouse, Move}
 
 @export var rotationSpeed : float = TAU * 2
 
-@export var player_grab : Node # Get held obj
-@export var player_movement : Node # Get move dir
-@export var player_combat : Node # Get click event and click pos
-
-@export var rb : RigidBody3D
+@export var player : PlayerBehavior
 @export var mesh: MeshInstance3D
 
 @export var holding : bool = false
 @export var is_attacking : bool = false
 @export var has_clicked : bool = false
+
+@export var look_at_click_length : float = 1
+var _look_at_click_timer : float = 0
 
 var look_target : Vector3
 var last_look_target : Vector3
@@ -33,16 +32,31 @@ func _ready() -> void:
 	last_look_target = Vector3.FORWARD
 
 func _process(delta: float) -> void:
-	holding = player_grab.holding_obj
-	#is_attacking = player_combat.attacking
+	holding = player.player_grab.holding_obj
+	is_attacking = player.player_combat.attacking
+	
+	
+	if Input.is_action_just_pressed("attack") :
+		has_clicked = true
+		_look_at_click_timer = 0
+	
+	if has_clicked :
+		if _look_at_click_timer >= look_at_click_length :
+			has_clicked = false
+		else :
+			_look_at_click_timer += delta
+	
+	
+	
+	
 	
 	if holding :
 		look_mode = LookMode.Holding
 	elif is_attacking :
-		pass
-	elif has_clicked :
 		look_mode = LookMode.Click
-	elif player_movement.direction != Vector3.ZERO :
+	elif has_clicked :
+		look_mode = LookMode.Mouse
+	elif player.player_movement.direction != Vector3.ZERO :
 		look_mode = LookMode.Move
 	else :
 		look_mode = LookMode.None
@@ -53,21 +67,21 @@ func _process(delta: float) -> void:
 		LookMode.None :
 			pass
 		LookMode.Holding :
-			# Need to change to project on plane method
-			var blarg : Vector3 = Vector3(player_grab.grabbed_obj.global_position.x, rb.global_position.y, player_grab.grabbed_obj.global_position.z)
-			look_target = blarg - rb.global_position
+			# May need to change to project on plane method... currently kinda working
+			var blarg : Vector3 = Vector3(player.player_grab.grabbed_obj.global_position.x, player.global_position.y, player.player_grab.grabbed_obj.global_position.z)
+			look_target = blarg - player.global_position
+			
 		LookMode.Click :
-			# Need to change to project on plane method
-			var blarg : Vector3 = Vector3(player_combat.click_pos.x, rb.global_position.y, player_combat.click_pos.z)
-			look_target = blarg - rb.global_position
+			var blarg : Vector3 = Vector3(player.player_combat.click_pos.x, player.global_position.y, player.player_combat.click_pos.z)
+			look_target = blarg - player.global_position
+			
 		LookMode.Mouse :
+			var blarg : Vector3 = Vector3(player.player_combat.mouse_pos.x, player.global_position.y, player.player_combat.mouse_pos.z)
+			look_target = blarg - player.global_position
 			
-			
-			
-			pass
 		LookMode.Move :
-			if (player_movement.direction != Vector3.ZERO) :
-				look_target = player_movement.direction
+			if (player.player_movement.direction != Vector3.ZERO) :
+				look_target = player.player_movement.direction
 			else :
 				look_target = last_look_target
 	
@@ -87,6 +101,7 @@ func _process(delta: float) -> void:
 		DebugDraw.draw_line_relative_thick(mesh.global_position, mesh.global_basis.z, 2, Color.BLUE)
 		
 		#DebugDraw.draw_line_relative_pointy(rb.global_position, rb.linear_velocity, 2, Color(1, 1, 0, 0.25))
-		DebugDraw.draw_line_relative_pointy(look_target + rb.global_position, Vector3.UP, 10, Color.CYAN)
-		DebugDraw.draw_line_relative_pointy(player_combat.click_pos, Vector3.UP, 10, Color.PURPLE)
+		DebugDraw.draw_line_relative_pointy(look_target + player.global_position, Vector3.UP, 10, Color.CYAN)
+		DebugDraw.draw_line_relative_pointy(player.player_combat.click_pos, Vector3.UP, 10, Color.PURPLE)
+		DebugDraw.draw_line_relative_pointy(player.player_combat.mouse_pos, Vector3.UP, 10, Color.YELLOW)
 		

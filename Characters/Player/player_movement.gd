@@ -6,11 +6,7 @@ class_name PlayerMovement
 @export var debug_print : bool
 
 @export_group("Refernces")
-@export var level_root : Node3D
-@export var cam : Camera3D
 @export var player : PlayerBehavior
-@export var mesh : MeshInstance3D
-@export var player_grab : PlayerGrab
 var holding_target_offset : Vector3
 var holding_target_pos : Vector3
 
@@ -29,9 +25,9 @@ var direction : Vector3
 func _process(_delta: float) -> void:
 	input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	
-	forward_relative = input_dir.y * cam.global_basis.z
+	forward_relative = input_dir.y * player.cam.global_basis.z
 	forward_relative = Vector3(forward_relative.x, 0, forward_relative.z).normalized()
-	right_relative = input_dir.x * cam.global_basis.x
+	right_relative = input_dir.x * player.cam.global_basis.x
 	relative_input = (forward_relative + right_relative).normalized()
 	relative_input.y = 0
 	
@@ -39,13 +35,13 @@ func _process(_delta: float) -> void:
 	#direction.y = 0
 	
 	if debug_visuals :
-		if player_grab.grabbed_obj != null :
-			DebugDraw.draw_line_relative_thick(player_grab.grabbed_obj.global_position + holding_target_offset, Vector3.UP * 5, 2)
+		if player.player_grab.grabbed_obj != null :
+			DebugDraw.draw_line_relative_thick(player.player_grab.grabbed_obj.global_position + holding_target_offset, Vector3.UP * 5, 2)
 	
-	if player_grab.holding_obj :
+	if player.player_grab.holding_obj :
 		if move_mode != MoveMode.Grabbed :
 			move_mode = MoveMode.Grabbed
-			holding_target_offset = player.global_position - player_grab.grabbed_obj.global_position
+			holding_target_offset = player.global_position - player.player_grab.grabbed_obj.global_position
 			 
 	else :
 		if move_mode != MoveMode.Player :
@@ -53,7 +49,7 @@ func _process(_delta: float) -> void:
 			holding_target_offset = Vector3.ZERO
 	
 	if holding_target_offset != Vector3.ZERO :
-		holding_target_pos = player_grab.grabbed_obj.global_position + holding_target_offset
+		holding_target_pos = player.player_grab.grabbed_obj.global_position + holding_target_offset
 
 func _physics_process(delta: float) -> void:
 	if move_mode == MoveMode.Player :
@@ -71,12 +67,12 @@ func _physics_process(delta: float) -> void:
 		player.linear_velocity.x  = move_toward(player.linear_velocity.x , correction_dir.x * player.move_speed * 10, player.acceleration * 10 * delta)
 		player.linear_velocity.z = move_toward(player.linear_velocity.z, correction_dir.z * player.move_speed * 10, player.acceleration * 10 * delta)
 		
-		if player_grab.grabbed_obj != null :
+		if player.player_grab.grabbed_obj != null :
 			if direction :
-				player_grab.grabbed_obj.apply_central_force(direction * player.move_force)
-				player_grab.grabbed_obj.linear_velocity = player_grab.grabbed_obj.linear_velocity.clamp(-player.move_speed * Vector3.ONE, player.move_speed * Vector3.ONE)
+				player.player_grab.grabbed_obj.apply_central_force(direction * player.move_force)
+				player.player_grab.grabbed_obj.linear_velocity = player.player_grab.grabbed_obj.linear_velocity.clamp(-player.move_speed * Vector3.ONE, player.move_speed * Vector3.ONE)
 			else :
-				player_grab.grabbed_obj.linear_velocity.move_toward(Vector3.ZERO, player.hold_force * delta)
+				player.player_grab.grabbed_obj.linear_velocity.move_toward(Vector3.ZERO, player.hold_force * delta)
 	
 	if debug_visuals :
 		DebugDraw.draw_line_relative_pointy(player.global_position, direction, 2, Color.MAGENTA)
