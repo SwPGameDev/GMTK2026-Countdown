@@ -19,7 +19,6 @@ func _process(_delta: float) -> void:
 
 func FindNearestRB() -> RigidBody3D :
 	var nearby_bods : Array[Node3D] = interact_sphere.get_overlapping_bodies()
-	var nearby_rbs : Array[RigidBody3D] = []
 	
 	var closest_rb : RigidBody3D = null
 	var smallest_distance : float = INF
@@ -27,25 +26,24 @@ func FindNearestRB() -> RigidBody3D :
 	if not nearby_bods.is_empty() :
 		for bod in nearby_bods :
 			if bod is RigidBody3D :
-				nearby_rbs.append(bod)
-	
-	if not nearby_rbs.is_empty() :
-		for rb : RigidBody3D in nearby_rbs :
-			if rb is ValueableBox :
-				var vb : ValueableBox = rb
-				if not vb.grabbable :
+				var rb : RigidBody3D = bod
+				if rb is PlayerBehavior :
 					continue
-			var distance = player.global_position.distance_to(rb.global_position)
-			
-			if distance < smallest_distance :
-				smallest_distance = distance
-				closest_rb = rb
-	
+				if rb is ValueableBox :
+					var vb : ValueableBox = rb
+					if not vb.grabbable :
+						continue
+				var distance = player.global_position.distance_to(rb.global_position)
+				
+				if distance < smallest_distance :
+					smallest_distance = distance
+					closest_rb = rb
 	
 	return closest_rb
 
 func TryGrab() :
 	nearest_rb = FindNearestRB()
+	print("GRABBING: " + str(nearest_rb))
 	
 	if nearest_rb != null :
 		holding_obj = true

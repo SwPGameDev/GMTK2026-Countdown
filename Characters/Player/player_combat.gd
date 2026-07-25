@@ -1,6 +1,12 @@
 extends Node
 class_name PlayerCombat
 
+# If grabbing:
+## Left click push? Right click drop?
+# else :
+## left click try swing
+
+
 @export var white_texture : Texture2D
 @export var gray_texture : Texture2D
 

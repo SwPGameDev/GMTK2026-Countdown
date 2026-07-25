@@ -38,8 +38,9 @@ func _process(_delta: float) -> void:
 	direction = (player.transform.basis * relative_input).normalized()
 	#direction.y = 0
 	
-	if player_grab.grabbed_obj != null :
-		DebugDraw.draw_line_relative_thick(player_grab.grabbed_obj.global_position + holding_target_offset, Vector3.UP * 5, 2)
+	if debug_visuals :
+		if player_grab.grabbed_obj != null :
+			DebugDraw.draw_line_relative_thick(player_grab.grabbed_obj.global_position + holding_target_offset, Vector3.UP * 5, 2)
 	
 	if player_grab.holding_obj :
 		if move_mode != MoveMode.Grabbed :
@@ -65,13 +66,15 @@ func _physics_process(delta: float) -> void:
 	elif move_mode == MoveMode.Grabbed :
 		
 		var correction_dir : Vector3 = holding_target_pos - player.global_position
-		DebugDraw.draw_line_relative_pointy(player.global_position, correction_dir, 10, Color.WHITE)
-		player.linear_velocity.x  = move_toward(player.linear_velocity.x , correction_dir.x * player.move_speed, player.acceleration * delta)
-		player.linear_velocity.z = move_toward(player.linear_velocity.z, correction_dir.z * player.move_speed, player.acceleration * delta)
+		if debug_visuals :
+			DebugDraw.draw_line_relative_pointy(player.global_position, correction_dir, 10, Color.WHITE)
+		player.linear_velocity.x  = move_toward(player.linear_velocity.x , correction_dir.x * player.move_speed * 10, player.acceleration * 10 * delta)
+		player.linear_velocity.z = move_toward(player.linear_velocity.z, correction_dir.z * player.move_speed * 10, player.acceleration * 10 * delta)
 		
 		if player_grab.grabbed_obj != null :
 			if direction :
 				player_grab.grabbed_obj.apply_central_force(direction * player.move_force)
+				player_grab.grabbed_obj.linear_velocity = player_grab.grabbed_obj.linear_velocity.clamp(-player.move_speed * Vector3.ONE, player.move_speed * Vector3.ONE)
 			else :
 				player_grab.grabbed_obj.linear_velocity.move_toward(Vector3.ZERO, player.hold_force * delta)
 	
@@ -81,3 +84,13 @@ func _physics_process(delta: float) -> void:
 		print(player.linear_velocity)
 		print("SPEED: " + str(player.linear_velocity.length()))
 	
+
+
+
+
+
+
+
+
+
+#
