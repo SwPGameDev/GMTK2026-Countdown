@@ -26,6 +26,8 @@ var _delay_timer : float
 
 func _ready() -> void :
 	_round_timer = round_countdown
+	current_state = GameState.Upgrading
+
 
 func _process(delta: float) -> void :
 	if Input.is_action_just_pressed("temp_restart") :

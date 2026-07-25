@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cruloqftqxvaw"]
+
+[ext_resource type="Texture2D" uid="uid://caq0s0f30xffp" path="res://Assets/Art/ProtoTextures/Orange/texture_09.png" id="1_xp5y1"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_xp5y1")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+texture_filter = 2
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5

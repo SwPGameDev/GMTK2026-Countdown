@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bdwfs07uvt1cb"]
+
+[ext_resource type="Texture2D" uid="uid://54pqgwpl0ua8" path="res://Assets/Art/ProtoTextures/Dark/texture_01.png" id="1_nujfe"]
+
+[resource]
+albedo_texture = ExtResource("1_nujfe")
+uv1_triplanar = true
+texture_filter = 2
+stencil_mode = 3
+stencil_flags = 2

@@ -47,6 +47,10 @@ func _on_enter_trigger_body_entered(body: Node3D) -> void:
 	print("Detected: " + str(body))
 	var player : PlayerBehavior = get_tree().get_first_node_in_group("Player")
 	player.ReleaseGrab()
+	
+	if body is ValueableBox :
+		var vb : ValueableBox = body
+		vb.grabbable = false
 
 
 

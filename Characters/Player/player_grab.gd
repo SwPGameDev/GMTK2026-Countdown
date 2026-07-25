@@ -31,6 +31,10 @@ func FindNearestRB() -> RigidBody3D :
 	
 	if not nearby_rbs.is_empty() :
 		for rb : RigidBody3D in nearby_rbs :
+			if rb is ValueableBox :
+				var vb : ValueableBox = rb
+				if not vb.grabbable :
+					continue
 			var distance = player.global_position.distance_to(rb.global_position)
 			
 			if distance < smallest_distance :

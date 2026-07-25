@@ -5,6 +5,8 @@ class_name ValueableBox
 @export var min_value : int = 0
 @export var max_value : int = 1
 
+var grabbable : bool = true
+
 
 func _ready() -> void:
 	value = randi_range(min_value, max_value)
