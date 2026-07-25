@@ -211,6 +211,7 @@ environment = SubResource("Environment_2b8ko")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=949409840]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.93297535, 0.89204097, 0.88305235, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=733976788 instance=ExtResource("10_npfg7")]

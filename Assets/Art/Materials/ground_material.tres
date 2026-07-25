@@ -1,18 +1,25 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://cruloqftqxvaw"]
 
-[ext_resource type="Texture2D" uid="uid://cd6ivwnf466e4" path="res://Assets/Art/Textures/ground_with_rocks_01_4k/ground_with_rocks_01_color_4k.png" id="1_4iaeb"]
-[ext_resource type="Texture2D" uid="uid://bik7rrgy2ncst" path="res://Assets/Art/Textures/ground_with_rocks_01_4k/ground_with_rocks_01_normal_gl_4k.png" id="2_waqrp"]
-[ext_resource type="Texture2D" uid="uid://fa4sgkdqf3a2" path="res://Assets/Art/Textures/ground_with_rocks_01_4k/ground_with_rocks_01_roughness_4k.png" id="3_cd5y8"]
+[ext_resource type="Texture2D" uid="uid://cqmw0g4jg1mv6" path="res://Assets/Art/Textures/ground_with_rocks/ground_with_rocks_01_color_1k.png" id="1_k6unj"]
+[ext_resource type="Texture2D" uid="uid://c6w2pfp83gd3l" path="res://Assets/Art/Textures/ground_with_rocks/ground_with_rocks_01_roughness_1k.png" id="2_4iaeb"]
+[ext_resource type="Texture2D" uid="uid://brb5ock2doo6i" path="res://Assets/Art/Textures/ground_with_rocks/ground_with_rocks_01_ambient_occlusion_1k.png" id="2_cd5y8"]
+[ext_resource type="Texture2D" uid="uid://bu5d6066blb85" path="res://Assets/Art/Textures/ground_with_rocks/ground_with_rocks_01_normal_gl_1k.png" id="2_waqrp"]
+[ext_resource type="Texture2D" uid="uid://bxl042dff3mth" path="res://Assets/Art/Textures/ground_with_rocks/ground_with_rocks_01_height_1k.png" id="3_xwjui"]
 
 [resource]
 transparency = 1
-albedo_texture = ExtResource("1_4iaeb")
+albedo_texture = ExtResource("1_k6unj")
 metallic_specular = 0.1
-roughness_texture = ExtResource("3_cd5y8")
+roughness_texture = ExtResource("2_4iaeb")
+roughness_texture_channel = 4
 normal_enabled = true
-normal_scale = 4.43
+normal_scale = 4.0
 normal_texture = ExtResource("2_waqrp")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
+ao_enabled = true
+ao_texture = ExtResource("2_cd5y8")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_xwjui")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 texture_filter = 2
 stencil_mode = 3
