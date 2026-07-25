@@ -74,3 +74,19 @@ func _physics_process(delta: float) -> void:
 		else :
 			transform.origin = goalPos
 	
+
+
+func HardUpdatePos() :
+	if enable_follow :
+		var goalPos = target.transform.origin + offset
+		transform.origin = goalPos
+	self.reset_physics_interpolation()
+
+
+
+
+
+
+
+
+#

@@ -1,4 +1,5 @@
 extends Node
+class_name PlayerGrab
 
 @export var holding_obj : bool
 @export var grabbed_obj : RigidBody3D
@@ -7,18 +8,13 @@ extends Node
 @export var interact_sphere : Area3D
 var nearest_rb : RigidBody3D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") :
+		print("E")
 		if holding_obj :
-			holding_obj = false
-			grabbed_obj = null
-			nearest_rb = null
+			TryReleaseHold()
 		else :
-			nearest_rb = FindNearestRB()
-			
-			if nearest_rb != null :
-				holding_obj = true
-				grabbed_obj = nearest_rb
+			TryGrab()
 
 
 func FindNearestRB() -> RigidBody3D :
@@ -44,8 +40,17 @@ func FindNearestRB() -> RigidBody3D :
 	
 	return closest_rb
 
+func TryGrab() :
+	nearest_rb = FindNearestRB()
+	
+	if nearest_rb != null :
+		holding_obj = true
+		grabbed_obj = nearest_rb
 
-
+func TryReleaseHold() :
+	holding_obj = false
+	grabbed_obj = null
+	nearest_rb = null
 
 
 

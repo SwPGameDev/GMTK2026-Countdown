@@ -1,4 +1,5 @@
 extends Node
+class_name PlayerCombat
 
 @export var white_texture : Texture2D
 @export var gray_texture : Texture2D
@@ -8,6 +9,7 @@ extends Node
 @export var hurtbox : Area3D
 @export var hit_force : float = 500
 
+var click : bool
 @export var look_at_click_length : float = 1
 var _look_at_click_timer : float = 0
 

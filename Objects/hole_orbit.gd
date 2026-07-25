@@ -2,7 +2,9 @@ extends Node
 
 @export var hole : AnimatableBody3D
 
-@export var follow_mode : bool = false
+enum MoveMode{None, Orbit, Follow}
+@export var move_mode : MoveMode
+
 @export var target : Node3D
 
 @export var follow_speed : float = 1
@@ -20,9 +22,9 @@ func _physics_process(delta: float) -> void:
 	var z_pos = sin(time * rotate_speed + offset.z) * amplitude.z
 	
 	
-	if follow_mode :
+	if move_mode == MoveMode.Follow :
 		goal_pos = Vector3(target.global_position.x, hole.global_position.y, target.global_position.z)
 		hole.global_position = hole.global_position.move_toward(goal_pos, follow_speed * delta)
-	else :
-		goal_pos = Vector3(x_pos, 0, z_pos)
+	elif move_mode == MoveMode.Orbit :
+		goal_pos = Vector3(x_pos, hole.global_position.y, z_pos)
 		hole.global_position = goal_pos
