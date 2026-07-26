@@ -35,15 +35,33 @@ radius = 0.25
 height = 0.5
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ociva"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_top_color = Color(0.38075075, 0.45667863, 0.545453, 1)
+sky_horizon_color = Color(0.42465276, 0.35162786, 0.40745762, 1)
+sky_curve = 0.21961243
+sky_energy_multiplier = 0.9
+ground_bottom_color = Color(0.27762827, 0.12542236, 0.06377789, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_energy_multiplier = 0.8
+energy_multiplier = 0.9
 
 [sub_resource type="Sky" id="Sky_rhk1q"]
 sky_material = SubResource("ProceduralSkyMaterial_ociva")
 
 [sub_resource type="Environment" id="Environment_2b8ko"]
 background_mode = 2
+background_energy_multiplier = 0.9
 sky = SubResource("Sky_rhk1q")
+ambient_light_sky_contribution = 0.9
+tonemap_mode = 1
+tonemap_exposure = 1.1
+tonemap_white = 2.0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.54850423, 0.44203082, 0.44780988, 1)
+fog_light_energy = 0.8
+fog_density = 1.0
+fog_depth_curve = 1.6817919
+adjustment_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wtb5e"]
 friction = 0.0
@@ -215,15 +233,16 @@ size = Vector3(2, 1, 5)
 
 [node name="LevelRoot" type="Node3D" unique_id=886676126]
 
-[node name="GamePlayManger" type="Node" parent="." unique_id=985011085 node_paths=PackedStringArray("player_spawn_point", "start_lever", "player", "collection_hole_move", "countdown_timer_label", "temp_gold_label")]
-unique_name_in_owner = true
+[node name="GameplayManger" type="Node" parent="." unique_id=985011085 node_paths=PackedStringArray("level_root", "player_spawn_point", "start_lever", "player", "collection_hole_move", "countdown_timer_label", "temp_gold_label", "player_hp_label") groups=["GameplayManager"]]
 script = ExtResource("1_c735f")
+level_root = NodePath("..")
 player_spawn_point = NodePath("../PlayerSpawnPoint")
 start_lever = NodePath("../StartLever")
 player = NodePath("../Player")
 collection_hole_move = NodePath("../DaHole/HoleMovement")
 countdown_timer_label = NodePath("../UI/Control/CountDown/TimerLabel")
 temp_gold_label = NodePath("../UI/Control/RoundGold/Label")
+player_hp_label = NodePath("../UI/Control/HP/Label")
 round_countdown = 10.0
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1162797919]
@@ -291,6 +310,32 @@ text = "--"
 label_settings = SubResource("LabelSettings_yqpnd")
 horizontal_alignment = 1
 
+[node name="HP" type="Panel" parent="UI/Control" unique_id=636316359]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -76.0
+offset_right = 142.0
+offset_bottom = -12.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="UI/Control/HP" unique_id=1697033245]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "12/12"
+label_settings = SubResource("LabelSettings_yqpnd")
+horizontal_alignment = 1
+
 [node name="PlayerSpawnPoint" type="Node3D" parent="." unique_id=1586389328]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
 
@@ -314,9 +359,8 @@ physics_interpolation_mode = 1
 transform = Transform3D(-1, 7.161255e-08, -5.0143647e-08, 0, 0.57357645, 0.81915206, 8.742278e-08, 0.81915206, -0.57357645, 0, 11, -38)
 script = ExtResource("1_cxou5")
 target = NodePath("../Player")
-offset = Vector3(0, 10, -7)
+offset = Vector3(0, 8.5, -3.5)
 followSpeed = 50.0
-interpolatePos = false
 enable_orbit = false
 capture_mouse = false
 camOrbitSens = 1.0

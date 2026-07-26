@@ -2,6 +2,7 @@ extends Node
 class_name GameplayManager
 
 @export_group("Refernces")
+@export var level_root : Node3D
 @export var player_spawn_point : Node3D
 @export var gate : Node3D #######
 @export var start_lever : StartLever
@@ -10,6 +11,7 @@ class_name GameplayManager
 @export var countdown_timer_label : Label
 @export var temp_gold_label : Label
 @export var stored_gold_label : Label
+@export var player_hp_label : Label
 
 @export_group("Tracking")
 enum GameState{Upgrading, Countdown, Overtime}
@@ -140,6 +142,14 @@ func UpdateMinCoinValue(new_value : int) :
 
 func UpdateMaxCoinValue(new_value : int) :
 	current_max_coin_value = new_value
+
+
+
+func UpdatePlayerHPLabel(current_hp : float, max_hp : float) :
+	var hp_string = String.num(current_hp, 0) + "/" + String.num(max_hp, 0)
+	player_hp_label.text = hp_string
+
+
 
 
 

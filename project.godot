@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK2026-Countdown"
+run/main_scene="uid://dhvnwvpx5whb4"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -31,6 +32,7 @@ mouse_cursor/custom_image_hotspot=Vector2(32, 32)
 [global_group]
 
 Player=""
+GameplayManager=""
 
 [input]
 

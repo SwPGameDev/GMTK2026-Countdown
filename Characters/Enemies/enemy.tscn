@@ -17,84 +17,82 @@ size = Vector3(0.9, 0.9, 0.9)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
 
-[node name="Enemy" type="RigidBody3D" unique_id=542992792 node_paths=PackedStringArray("navigation_agent", "anim")]
+[node name="Enemy" type="RigidBody3D" unique_id=542992792 node_paths=PackedStringArray("navigation_agent", "mesh", "hurtbox", "anim", "col")]
 physics_interpolation_mode = 1
 axis_lock_angular_x = true
+axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_3h7jc")
 script = ExtResource("1_oooen")
 navigation_agent = NodePath("NavigationAgent3D")
+mesh = NodePath("mesh")
+hurtbox = NodePath("mesh/Hurtbox")
 anim = NodePath("mesh/AnimationPlayer")
+col = NodePath("Collider")
 max_hp = 6.0
 
 [node name="mesh" parent="." unique_id=1405535657 instance=ExtResource("2_6288r")]
 
-[node name="metarig" parent="mesh" index="0" unique_id=796216475]
-transform = Transform3D(0.635654, -0.1307907, -0.76081365, 0.04609285, 0.99021506, -0.13171662, 0.7705965, 0.04865814, 0.6354629, 0.12000947, -0.18421234, -0.036918554)
+[node name="metarig" parent="mesh" index="0" unique_id=1739098267]
+transform = Transform3D(0.87684834, -0.23865463, -0.41734928, 0.086537935, 0.9322611, -0.3512832, 0.47291395, 0.27190563, 0.83810455, 0.21922897, -0.4814425, -0.23940986)
 
-[node name="Skeleton3D" parent="mesh/metarig" index="0" unique_id=1984228359]
-bones/1/rotation = Quaternion(0.021740673, 0.026641587, -0.018075597, 0.9992451)
-bones/2/rotation = Quaternion(0.12503457, 0.050719496, -0.034296576, 0.99026144)
-bones/3/rotation = Quaternion(-0.0483921, 0.05159838, -0.032959398, 0.99695015)
-bones/4/rotation = Quaternion(-0.04295459, 0.027232293, -0.0008572562, 0.99870545)
-bones/5/rotation = Quaternion(0.010697974, 0.02724346, 0.00038542433, 0.99957156)
-bones/6/rotation = Quaternion(-0.6160971, -0.4163643, -0.35259527, 0.5681037)
-bones/7/rotation = Quaternion(-0.36797234, 0.5316033, -0.67984354, 0.34613168)
-bones/8/rotation = Quaternion(0.32211128, -0.12193079, -0.13450052, 0.9291324)
-bones/9/rotation = Quaternion(0.14771587, -0.047533635, 0.047979042, 0.9867212)
-bones/10/rotation = Quaternion(-0.6081025, 0.47854558, 0.36069956, 0.5206739)
-bones/11/rotation = Quaternion(-0.5565278, -0.6399025, 0.4591067, 0.26461804)
-bones/12/rotation = Quaternion(0.47450125, 0.06962812, 0.12932523, 0.86791444)
-bones/13/rotation = Quaternion(0.41856134, 0.03143177, 0.07870028, 0.9042261)
-bones/19/rotation = Quaternion(0.7707429, 0.22315925, -0.36622185, 0.47120795)
-bones/20/rotation = Quaternion(0.47255826, 0.18433955, 0.06491897, 0.8593562)
-bones/21/rotation = Quaternion(-0.6843041, -0.22716649, 0.22154564, 0.65653706)
-bones/22/rotation = Quaternion(-0.075063795, 0.97367954, -0.044934757, -0.21046254)
-bones/23/rotation = Quaternion(0.9032919, -0.26525876, 0.0636725, 0.33113062)
-bones/24/rotation = Quaternion(0.53713685, -0.0674509, 0.02156352, 0.84051746)
-bones/25/rotation = Quaternion(-0.7980937, 0.24466379, -0.35607228, 0.41999847)
-bones/26/rotation = Quaternion(0.046917036, 0.98054814, -0.03860743, 0.1866382)
+[node name="Skeleton3D" parent="mesh/metarig" index="0" unique_id=871593020]
+bones/1/rotation = Quaternion(-0.0077398727, -0.022753457, -0.026135335, 0.9993695)
+bones/2/rotation = Quaternion(0.08446154, -0.044520814, -0.027097091, 0.9950628)
+bones/3/rotation = Quaternion(0.014142953, -0.04648297, -0.02356702, 0.9985409)
+bones/4/rotation = Quaternion(-0.051188655, 0.047605045, 0.029206997, 0.9971261)
+bones/5/rotation = Quaternion(0.002391217, 0.046224214, 0.03134755, 0.9984363)
+bones/6/rotation = Quaternion(-0.57507455, -0.4650824, -0.35862648, 0.569539)
+bones/7/rotation = Quaternion(-0.09981907, 0.5153353, -0.6205037, 0.5826156)
+bones/9/rotation = Quaternion(0.14492472, -0.15897244, 0.13339825, 0.9674346)
+bones/12/rotation = Quaternion(0.8820186, 0.06870538, 0.14295134, 0.44372037)
+bones/13/rotation = Quaternion(0.25256366, 0.096733384, -0.06362798, 0.96062785)
+bones/15/rotation = Quaternion(-1.3191563e-07, 0.73246664, 0.68080294, 6.3513944e-08)
+bones/16/rotation = Quaternion(-1.3191563e-07, 0.73246664, 0.68080294, 6.3513944e-08)
+bones/19/rotation = Quaternion(0.51968974, 0.4858138, 0.12149851, 0.69220346)
+bones/21/rotation = Quaternion(-0.762996, -0.16028695, 0.29205307, 0.5539408)
+bones/22/rotation = Quaternion(-0.022035787, 0.9763076, -0.051247023, -0.20907353)
+bones/24/rotation = Quaternion(0.92361814, -0.0688852, -0.16408516, 0.3395003)
+bones/25/rotation = Quaternion(-0.9184568, 0.11636527, -0.20932272, 0.31477016)
+bones/26/rotation = Quaternion(0.0708952, 0.93323016, -0.31558248, 0.15640692)
 
-[node name="hand_R" parent="mesh/metarig/Skeleton3D" index="0" unique_id=610652638]
-transform = Transform3D(-0.903488, 0.261645, -0.3394862, -0.39647377, -0.20924988, 0.89388096, 0.1628421, 0.9422081, 0.29279035, -0.12064083, 0.9761936, 0.15740283)
+[node name="hand_R" parent="mesh/metarig/Skeleton3D" index="0" unique_id=1866993304]
+transform = Transform3D(-0.51757985, -0.41763347, 0.74678904, -0.29366466, 0.90647966, 0.3034077, -0.80366194, -0.06226787, -0.59182, -0.4157927, 1.4439921, 0.061165933)
 
-[node name="sword" parent="mesh/metarig/Skeleton3D/hand_R" index="0" unique_id=175616313]
+[node name="sword" parent="mesh/metarig/Skeleton3D/hand_R" index="0" unique_id=637546767]
 surface_material_override/0 = ExtResource("3_ufh3i")
 surface_material_override/1 = ExtResource("4_ylejg")
 
-[node name="belt" parent="mesh/metarig/Skeleton3D" index="1" unique_id=1709107714]
+[node name="belt" parent="mesh/metarig/Skeleton3D" index="1" unique_id=1330628277]
 surface_material_override/0 = ExtResource("4_ylejg")
 surface_material_override/1 = ExtResource("5_731b2")
 
-[node name="body" parent="mesh/metarig/Skeleton3D" index="2" unique_id=475949061]
+[node name="body" parent="mesh/metarig/Skeleton3D" index="2" unique_id=1004834814]
 surface_material_override/0 = ExtResource("6_3heii")
 surface_material_override/1 = ExtResource("3_ufh3i")
 
-[node name="breastplate" parent="mesh/metarig/Skeleton3D" index="3" unique_id=110612631]
+[node name="breastplate" parent="mesh/metarig/Skeleton3D" index="3" unique_id=44708162]
 surface_material_override/0 = ExtResource("3_ufh3i")
 surface_material_override/1 = ExtResource("4_ylejg")
 
-[node name="coif" parent="mesh/metarig/Skeleton3D" index="4" unique_id=233807715]
+[node name="coif" parent="mesh/metarig/Skeleton3D" index="4" unique_id=814421475]
 surface_material_override/0 = ExtResource("5_731b2")
 
-[node name="helmet" parent="mesh/metarig/Skeleton3D" index="5" unique_id=932647862]
+[node name="helmet" parent="mesh/metarig/Skeleton3D" index="5" unique_id=1056970149]
 surface_material_override/0 = ExtResource("3_ufh3i")
 surface_material_override/1 = ExtResource("7_41bqi")
 
-[node name="pauldron" parent="mesh/metarig/Skeleton3D" index="6" unique_id=1053868323]
+[node name="pauldron" parent="mesh/metarig/Skeleton3D" index="6" unique_id=1445525735]
 surface_material_override/0 = ExtResource("3_ufh3i")
 surface_material_override/1 = ExtResource("4_ylejg")
 
-[node name="plume" parent="mesh/metarig/Skeleton3D" index="7" unique_id=1406258691]
+[node name="plume" parent="mesh/metarig/Skeleton3D" index="7" unique_id=1073796733]
 surface_material_override/0 = ExtResource("8_cwbm2")
 
-[node name="vambrace" parent="mesh/metarig/Skeleton3D" index="8" unique_id=2038319192]
+[node name="vambrace" parent="mesh/metarig/Skeleton3D" index="8" unique_id=780923262]
 surface_material_override/0 = ExtResource("3_ufh3i")
 surface_material_override/1 = ExtResource("4_ylejg")
-
-[node name="AnimationPlayer" parent="mesh" index="1" unique_id=1010367515]
-autoplay = &"idle"
 
 [node name="Hurtbox" type="Area3D" parent="mesh" unique_id=275739027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
@@ -102,6 +100,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/Hurtbox" unique_id=1232126709]
 shape = SubResource("BoxShape3D_yqpnd")
 debug_color = Color(0.8, 0, 0.16470589, 0.54901963)
+
+[node name="AnimationPlayer" parent="mesh" index="3" unique_id=1700900514]
+autoplay = &"idle"
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=976303765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

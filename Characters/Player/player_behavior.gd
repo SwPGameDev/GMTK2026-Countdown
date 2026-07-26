@@ -2,7 +2,7 @@ extends RigidBody3D
 class_name PlayerBehavior
 
 @export_group("References")
-@onready var gameplay_manager : GameplayManager = %GamePlayManger
+var gameplay_manager : GameplayManager
 @export var anim_tree : AnimationTree
 # move blend : 0 idle_loop -- 1 run_loop
 # parameters/move_blend/blend_amount
@@ -43,7 +43,13 @@ var current_hp : float
 @export var move_force : float = 500
 @export var hold_force : float = 1000
 
+var is_dead : bool = false
+
 func _ready() -> void :
+	gameplay_manager = get_tree().get_first_node_in_group("GameplayManager")
+	
+	current_hp = max_hp
+	
 	if cam == null :
 		cam = get_viewport().get_camera_3d()
 	
@@ -60,10 +66,10 @@ func ReleaseGrab() :
 	player_grab.TryReleaseHold()
 
 func ResetToPlayerSpawn() :
+	is_dead = false
 	ReleaseGrab()
-	axis_lock_angular_x = true
-	axis_lock_angular_y = true
-	axis_lock_angular_z = true
+	current_hp = max_hp
+	gameplay_manager.UpdatePlayerHPLabel(current_hp, max_hp)
 	
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
@@ -80,32 +86,39 @@ func ResetToPlayerSpawn() :
 	player_grab.process_mode = Node.PROCESS_MODE_INHERIT
 
 func TakeHit(damage_param : float) :
-	current_hp -= damage_param
-	if current_hp <= 0 :
-		Die()
-	
-	#var flip : int = randi_range(0, 1)
-	#if flip == 0 :
-		#anim.play("take_hit")
-	#else :
-		#anim.play("take_hit_2")
-	
-	anim_tree["parameters/take_hit_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	if not is_dead :
+		current_hp -= damage_param
+		gameplay_manager.UpdatePlayerHPLabel(current_hp, max_hp)
+		if current_hp <= 0 :
+			Die()
+			current_hp = 0
+			gameplay_manager.UpdatePlayerHPLabel(current_hp, max_hp)
+			return
+		
+		#var flip : int = randi_range(0, 1)
+		#if flip == 0 :
+			#anim.play("take_hit")
+		#else :
+			#anim.play("take_hit_2")
+		
+		anim_tree["parameters/take_hit_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 
 
 func Swing() :
-	anim_tree["parameters/swing_speed/scale"] = swing_speed
+	var flip : int = randi_range(0, 1)
+	
+	anim_tree["parameters/swing_choose/blend_amount"] = flip
+	
+	#anim_tree["parameters/swing_speed/scale"] = swing_speed
 	anim_tree["parameters/swing_one_shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
 
 
 func Die() :
+	is_dead = true
 	# anim.play("death")
+	anim_tree["parameters/death_one_shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
-	# Ragdoll
-	axis_lock_angular_x = false
-	axis_lock_angular_y = false
-	axis_lock_angular_z = false
 	
 	ReleaseGrab()
 	player_movement.process_mode = Node.PROCESS_MODE_DISABLED

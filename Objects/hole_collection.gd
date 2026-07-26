@@ -6,7 +6,11 @@ extends Node
 @export_flags_3d_physics var hole_layer
 @export_flags_3d_physics var hole_mask
 
-@onready var gameplay_manager : GameplayManager = %GamePlayManger
+var gameplay_manager : GameplayManager
+
+func _ready() -> void:
+	gameplay_manager = get_tree().get_first_node_in_group("GameplayManager")
+
 
 # Bottom Trigger
 func _on_collect_trigger_body_entered(body : Node3D) -> void:
