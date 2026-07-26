@@ -8,8 +8,10 @@
 
 [resource]
 transparency = 1
+albedo_color = Color(0.82947975, 0.8294798, 0.82947975, 1)
 albedo_texture = ExtResource("1_k6unj")
 metallic_specular = 0.1
+roughness = 0.75
 roughness_texture = ExtResource("2_4iaeb")
 roughness_texture_channel = 4
 normal_enabled = true

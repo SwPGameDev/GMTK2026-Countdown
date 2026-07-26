@@ -22,6 +22,8 @@ var gameplay_manager : GameplayManager
 @export var in_range : bool
 @export var on_cooldown : bool
 
+var is_in_hole : bool = false
+
 var look_target : Vector3
 var rotation_speed : float = 2 * TAU
 
@@ -37,9 +39,14 @@ var death_delay_length : float = 2
 var _death_timer : float = 0
 
 var on_delay_hit_check : bool = false
-var delay_hit_length : float = 0.5
+var delay_hit_length : float = 1
 var _delay_timer : float = 0
 
+var attacking : bool = false
+var attacking_duration : float = 1.5
+var _attacking_timer : float = 0
+
+var staggered : bool = false
 
 func _ready() -> void:
 	current_hp = max_hp
@@ -60,6 +67,23 @@ func _process(delta: float) -> void:
 		_death_timer += delta
 		if _death_timer >= death_delay_length :
 			queue_free()
+		return
+	
+	if anim.is_playing() :
+		pass
+	else :
+		anim.play("run_forward")
+	
+	if anim.current_animation == "take_hit" or anim.current_animation == "take_hit_2" :
+		staggered = true
+	else :
+		staggered = false
+		
+		if anim.current_animation == "swing_1" or anim.current_animation == "swing_2" or anim.current_animation == "swing_3" :
+			attacking = true
+		else :
+			attacking = false
+	
 	
 	
 	if on_cooldown :
@@ -75,6 +99,13 @@ func _process(delta: float) -> void:
 			_delay_timer = 0
 			TryHit(hurtbox)
 	
+	#if attacking :
+		#_attacking_timer += delta
+		#if _attacking_timer >= attacking_duration :
+			#attacking = false
+			#_attacking_timer = 0
+	
+	
 	
 	if target != null :
 		set_movement_target(target.global_position)
@@ -85,23 +116,17 @@ func _process(delta: float) -> void:
 		else :
 			in_range = false
 		
-		if in_range and not on_cooldown :
+		if in_range and not on_cooldown and not attacking and not on_delay_hit_check :
+			print("ATTACKING")
 			TryAttack()
 	
-	if not is_dead :
-		if anim.is_playing() :
-			pass
-		else :
-			anim.play("run_forward")
+	look_target = target.global_position - global_position
+	if look_target != Vector3.ZERO :
+		var rotation_target : Quaternion = Basis.looking_at(look_target, Vector3.UP, true).orthonormalized()
+		# Only y axis rotation go here
+		var new_rotation : Quaternion = mesh.basis.orthonormalized().slerp(rotation_target, delta * rotation_speed)
 		
-		
-		look_target = target.global_position - global_position
-		if look_target != Vector3.ZERO :
-			var rotation_target : Quaternion = Basis.looking_at(look_target, Vector3.UP, true).orthonormalized()
-			# Only y axis rotation go here
-			var new_rotation : Quaternion = mesh.basis.orthonormalized().slerp(rotation_target, delta * rotation_speed)
-			
-			mesh.basis = new_rotation
+		mesh.basis = new_rotation
 
 func _physics_process(_delta):
 	# Do not query when the map has never synchronized and is empty.
@@ -111,11 +136,30 @@ func _physics_process(_delta):
 		return
 
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
-	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_speed
+	
+	var new_velocity: Vector3
+	
+	var mod_speed : float = movement_speed
+	
+	if anim.current_animation == "take_hit" or anim.current_animation == "take_hit_2" :
+		mod_speed = 0
+	if attacking :
+		mod_speed = movement_speed / 4
+	
+	var y_vel = linear_velocity.y
+	
+	
+	new_velocity = global_position.direction_to(next_path_position) * mod_speed
+	new_velocity.y = y_vel
+	
 	if navigation_agent.avoidance_enabled:
 		navigation_agent.set_velocity(new_velocity)
 	else:
 		_on_velocity_computed(new_velocity)
+	
+	
+	if is_in_hole :
+		apply_force(Vector3.DOWN * 100)
 
 
 func set_movement_target(movement_target: Vector3):
@@ -142,28 +186,50 @@ func TryHit(area : Area3D) :
 
 
 func TryAttack() :
+	
+	# if not staggered :
+	attacking = true
+	
 	on_delay_hit_check = true
-	Swing()
-
-func Swing() :
+	
+	var flip : int = randi_range(0, 2)
+	
 	on_cooldown = true
-	anim.play("swing_1")
 	
-	#var flip : int = randi_range(0, 1)
-	#anim_tree["parameters/swing_choose/blend_amount"] = flip
-	#anim_tree["parameters/swing_one_shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-
-
-func TakeHit(damage : float) :
-	var flip : int = randi_range(0, 1)
 	if flip == 0 :
-		anim.play("take_hit")
+		anim.play("swing_1")
+	elif flip == 1 :
+		anim.play("swing_2")
 	else :
-		anim.play("take_hit_2")
+		anim.play("swing_3")
+
+
+
+func TakeHit(damage_param : float) :
+	var flip : int = randi_range(0, 1)
 	
-	current_hp -= damage
+	on_cooldown = true
+	_attack_cooldown_timer = 0
+	
+	on_delay_hit_check = false
+	_delay_timer = 0
+	
+	attacking = false
+	_attacking_timer = 0
+	
+	
+	
+	current_hp -= damage_param
 	if current_hp <= 0 :
 		Die()
+	else :
+		
+		if flip == 0 :
+			anim.play("take_hit")
+		else :
+			anim.play("take_hit_2")
+	
+	
 
 func SpawnBox() :
 	has_spawned_box = true
@@ -179,12 +245,14 @@ func Die() :
 		anim.play("death")
 		target = null
 		
+		freeze = true
 		col.set_deferred("disabled", true)
-		gravity_scale = 0.75
 		
 		
 		if not has_spawned_box :
 			SpawnBox()
+
+
 
 
 

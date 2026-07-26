@@ -19,7 +19,5 @@ ao_enabled = true
 ao_texture = ExtResource("2_sh36w")
 heightmap_enabled = true
 heightmap_texture = ExtResource("3_v02pj")
-uv1_scale = Vector3(0.4, 0.4, 0.4)
-uv1_triplanar = true
 texture_filter = 2
 stencil_flags = 2

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c8vddmxsrveg3"]
+
+[ext_resource type="Texture2D" uid="uid://pwfqtd8ddkdp" path="res://Assets/Art/Textures/Retro Fantasy Textures/wall_brick_small_sand_depth.png" id="1_xrt5r"]
+
+[resource]
+albedo_texture = ExtResource("1_xrt5r")
+uv1_scale = Vector3(0.5, 0.25, 0.25)
+uv1_triplanar = true
+texture_filter = 2

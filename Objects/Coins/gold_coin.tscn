@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://jvgmayn6bcm" path="res://Objects/Coins/coin.gd" id="1_45tti"]
 [ext_resource type="PackedScene" uid="uid://baqf26bkoy1v5" path="res://Assets/Art/Models/Coins/goldCoin.blend" id="2_yuop7"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fy5nl"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_66iwr"]
 size = Vector3(0.15, 0.05, 0.15)
 
 [node name="gold_coin" type="RigidBody3D" unique_id=648938403]
+physics_material_override = SubResource("PhysicsMaterial_fy5nl")
 script = ExtResource("1_45tti")
 value = 25
 metadata/_custom_type_script = "uid://jvgmayn6bcm"

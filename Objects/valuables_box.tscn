@@ -16,8 +16,6 @@ collision_layer = 5
 mass = 20.0
 physics_material_override = SubResource("PhysicsMaterial_b8iw0")
 script = ExtResource("1_2trv7")
-min_value = 1
-max_value = 3
 metadata/_custom_type_script = "uid://dpjtb5mhujud5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1045637185]

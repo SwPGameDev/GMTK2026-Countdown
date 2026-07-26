@@ -1,0 +1,30 @@
+[gd_resource type="Environment" format=3 uid="uid://dbq1nmh1mvgeq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ociva"]
+sky_top_color = Color(0.38075075, 0.45667863, 0.545453, 1)
+sky_horizon_color = Color(0.42465276, 0.35162786, 0.40745762, 1)
+sky_curve = 0.21961243
+sky_energy_multiplier = 0.9
+ground_bottom_color = Color(0.27762827, 0.12542236, 0.06377789, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_energy_multiplier = 0.8
+energy_multiplier = 0.9
+
+[sub_resource type="Sky" id="Sky_rhk1q"]
+sky_material = SubResource("ProceduralSkyMaterial_ociva")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_rhk1q")
+tonemap_mode = 1
+tonemap_exposure = 1.1
+tonemap_white = 2.0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.46620947, 0.39867145, 0.35773024, 1)
+fog_density = 0.8
+fog_sky_affect = 0.8
+fog_height = -1.0
+fog_height_density = 0.2
+fog_depth_begin = 5.0
+adjustment_enabled = true

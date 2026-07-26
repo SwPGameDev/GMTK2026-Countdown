@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cycqlhhimom13"]
+
+[ext_resource type="PackedScene" uid="uid://c5o6s5clc4pid" path="res://Assets/Art/Models/pillar.glb" id="1_w1m4m"]
+[ext_resource type="Material" uid="uid://yi8vgyki3k68" path="res://Assets/Art/Materials/pillar_material_2.tres" id="2_w1m4m"]
+
+[node name="pillar_mesh" unique_id=1880711278 instance=ExtResource("1_w1m4m")]
+
+[node name="Cylinder" parent="." index="0" unique_id=1972376136]
+surface_material_override/0 = ExtResource("2_w1m4m")

@@ -3,6 +3,8 @@ class_name GameplayManager
 
 @export_group("Refernces")
 @export var level_root : Node3D
+@export var enemy_scene : PackedScene
+@export var enemy_spawn_pos : Node3D
 @export var player_spawn_point : Node3D
 @export var start_lever : StartLever
 @export var player : PlayerBehavior
@@ -20,7 +22,7 @@ enum GameState{Upgrading, Countdown, Overtime}
 @export var round_gold : int = 0
 
 @export var overtimer_speedup_mod : float = 1
-@export var round_countdown : float = 45
+@export var round_countdown : float = 60
 @export var _round_timer : float
 @export var overtime : bool = false
 
@@ -30,6 +32,11 @@ var _delay_timer : float
 @export_group("Coin Stuff")
 @export var current_min_coin_value : int = 1
 @export var current_max_coin_value : int = 3
+
+@export_group("Spawn")
+@export var enemy_spawn_cooldown : float = 20
+var _spawn_timer : float = 0
+
 
 func _ready() -> void :
 	_round_timer = round_countdown
@@ -58,8 +65,20 @@ func _process(delta: float) -> void :
 			var timer_string : String = String.num(_round_timer, 0)
 			countdown_timer_label.text = timer_string
 			
+			
+			### ENEMY SPAWNING
+			if _spawn_timer >= enemy_spawn_cooldown :
+				SpawnEnemy()
+				_spawn_timer = 0
+			else :
+				_spawn_timer += delta
+			
+			
+			
 		GameState.Overtime :
 			collection_hole_move.follow_speed += (delta * overtimer_speedup_mod)
+			
+			_spawn_timer = 0
 	
 	if delayed_round_end_active :
 		if _delay_timer > 0 :
@@ -71,6 +90,8 @@ func _process(delta: float) -> void :
 
 
 func StartRound() :
+	SpawnEnemy()
+	
 	current_state = GameState.Countdown
 	_round_timer = round_countdown
 	collection_hole_move.SwitchToOrbit()
@@ -81,6 +102,9 @@ func StartRound() :
 func EndRound(player_survive : bool) :
 	current_state = GameState.Upgrading
 	collection_hole_move.SwitchToOrbit()
+	
+	
+	
 	if player_survive :
 		StoreGold(round_gold)
 	else :
@@ -90,7 +114,9 @@ func EndRound(player_survive : bool) :
 		countdown_timer_label.text = timer_string
 		ResetPlayerToPlayerSpawn()
 	
-	# CloseGate()
+	player.current_hp = player.max_hp
+	UpdatePlayerHPLabel(player.current_hp, player.max_hp)
+	
 	# ShowShop()
 	# DisablePlayerMovement()
 	
@@ -98,6 +124,20 @@ func EndRound(player_survive : bool) :
 func StartOvertime() :
 	current_state = GameState.Overtime
 	collection_hole_move.SwitchToFollow()
+	
+	
+	var enemies : Array[Node] = get_tree().get_nodes_in_group("Enemy")
+	for enemey in enemies :
+		enemey.has_spawned_box = true
+		enemey.Die()
+	
+
+func SpawnEnemy() :
+	var new_enemy : Enemy = enemy_scene.instantiate()
+	level_root.add_child(new_enemy)
+	new_enemy.global_position = enemy_spawn_pos.global_position
+
+
 
 func CollectTempGold(gold : int) :
 	round_gold += gold
@@ -106,6 +146,7 @@ func CollectTempGold(gold : int) :
 
 func StoreGold(gold : int) :
 	stored_gold += gold
+	stored_gold_label.text = str(stored_gold)
 	
 
 func TrySpendGold(gold_spend : int) -> bool :

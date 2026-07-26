@@ -16,11 +16,6 @@ var gameplay_manager : GameplayManager
 
 # parameters/take_hit_oneshot/request
 
-### Examples
-# animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-# animation_tree["parameters/eye_blend/blend_amount"] = 1.0
-
-
 @export var mesh : Node3D
 @export var cam : Camera3D
 @export var player_movement : PlayerMovement
@@ -137,6 +132,11 @@ func Die() :
 
 
 
+func _on_interact_checker_body_entered(body: Node3D) -> void:
+	if body is Coin :
+		var coin : Coin = body
+		print("yaya")
+		gameplay_manager.CollectTempGold(1)
 
 
 #
