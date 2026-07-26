@@ -58,8 +58,15 @@ func _ready() -> void :
 
 func _process(delta: float) -> void :
 	var move_blend_val : float = clamp((self.linear_velocity / move_speed).length(), 0, 1)
-	anim_tree["parameters/move_blend/blend_amount"] = move_blend_val
-	pass
+	
+	if player_grab.holding_obj :
+		anim_tree["parameters/move_mode_blend/blend_amount"] = -1
+		anim_tree["parameters/push_blend/blend_amount"] = move_blend_val
+	else :
+		anim_tree["parameters/move_mode_blend/blend_amount"] = 0
+		anim_tree["parameters/move_blend/blend_amount"] = move_blend_val
+		
+	
 
 
 func ReleaseGrab() :
@@ -109,7 +116,7 @@ func Swing() :
 	
 	anim_tree["parameters/swing_choose/blend_amount"] = flip
 	
-	#anim_tree["parameters/swing_speed/scale"] = swing_speed
+	
 	anim_tree["parameters/swing_one_shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
 

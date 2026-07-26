@@ -13,10 +13,16 @@ enum MoveMode{None, Orbit, Follow}
 @export var offset : Vector3 = Vector3(0, 0, 0)
 @export var amplitude : Vector3 = Vector3(5, 0, 5)
 
+var stored_follow_speed : float
+
 var goal_pos : Vector3
 var time : float = 0
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void :
+	stored_follow_speed = follow_speed
+	
+
+func _physics_process(delta: float) -> void :
 	if move_mode == MoveMode.Orbit :
 		time += delta
 	
@@ -31,3 +37,27 @@ func _physics_process(delta: float) -> void:
 		goal_pos = Vector3(x_pos, hole.global_position.y, z_pos)
 		#hole.global_position = goal_pos
 		hole.global_position = hole.global_position.move_toward(goal_pos, orbit_speed * delta)
+
+func SwitchToOrbit() :
+	follow_speed = stored_follow_speed
+	move_mode = MoveMode.Orbit
+
+func SwitchToFollow() :
+	stored_follow_speed = follow_speed
+	move_mode = MoveMode.Follow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#

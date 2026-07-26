@@ -4,6 +4,7 @@ class_name StartLever
 var gameplay_manager: GameplayManager
 
 @export var anim_player : AnimationPlayer
+@export var gate_anim : AnimationPlayer
 var flipped : bool = false
 
 var on_cooldown : bool = false
@@ -30,11 +31,13 @@ func FlipLever() :
 		if temp != flipped :
 			if temp :
 				anim_player.play("on_to_off")
-				
+				gate_anim.play("open_to_close")
 			else :
 				anim_player.play("off_to_on")
+				gate_anim.play("close_to_open")
 
 func ForceResetLever() :
 	anim_player.play("on_to_off")
+	gate_anim.play("open_to_close")
 	flipped = false
 	

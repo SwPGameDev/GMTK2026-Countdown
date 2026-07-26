@@ -55,7 +55,6 @@ ambient_light_sky_contribution = 0.9
 tonemap_mode = 1
 tonemap_exposure = 1.1
 tonemap_white = 2.0
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.54850423, 0.44203082, 0.44780988, 1)
 fog_light_energy = 0.8
@@ -68,7 +67,7 @@ friction = 0.0
 rough = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2ov11"]
-height = 13.5
+height = 12.0
 radius = 1.5
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rhk1q"]
@@ -136,6 +135,71 @@ size = Vector3(3, 3, 3)
 vertices = PackedVector3Array(-15.5, 0.20000002, -2, -13.75, 0.20000002, -2, -5, 0.20000002, -16.25, -5, 0.20000002, -18, -99.5, 0.20000002, -0.5, -3.5, 0.20000002, -99.5, -99.5, 0.20000002, -99.5, -3.5, 0.20000002, -18.5, -16, 0.20000002, -0.5, -2, 0.20000002, -18, -2, 0.20000002, -16.25, 13, 0.20000002, -15.5, 14.25, 0.20000002, -15.75, 14.25, 0.20000002, -99.5, 15.25, 0.20000002, -15.5, 99.5, 0.20000002, -15.5, 99.5, 0.20000002, -99.5, -4, 5.2, -17.5, -4, 5.2, -16.5, -3, 5.2, -16.5, -3, 5.2, -17.5, -3.75, 0.20000002, -17.25, -3.75, 0.20000002, -16.75, -3.25, 0.20000002, -16.75, -3.25, 0.20000002, -17.25, -13, 0.20000002, -0.25, -1.5, 0.20000002, -0.25, -1.5, 0.20000002, -1, -13, 0.20000002, -1.5, -0.75, 0.20000002, -1.5, -2, 0.20000002, -16, -2.5, 0.20000002, -15.5, -4.5, 0.20000002, -15.5, 12.5, 0.20000002, -15, 0.75, 0.20000002, -1.5, 13.25, 0.20000002, -12.75, 12.5, 0.20000002, -13.5, 17.75, 0.20000002, 0.5, 24, 0.20000002, 8.25, 25.5, 0.20000002, 8.25, 17.75, 0.20000002, -1, 15.25, 0.20000002, -12.75, 15.5, 0.20000002, -1.75, 17, 0.20000002, -1.75, 15.75, 0.20000002, -13.25, 15.75, 0.20000002, -15, 26.25, 0.20000002, 9, 26.25, 0.20000002, 10, 99.5, 0.20000002, 10, 14, 5.2, -13.5, 14.75, 5.2, -13.75, 14.5, 5.2, -14.75, 13.5, 5.2, -14.5, 14.5, 0.20000002, -1, 1.5, 0.20000002, -1, 1.5, 0.20000002, -0.25, 14.5, 0.20000002, -0.25, -15, 5.2, -1, -15, 5.2, 0, -14, 5.2, 0, -14, 5.2, -1, -14.75, 0.20000002, -0.75, -14.75, 0.20000002, -0.25, -14.25, 0.20000002, -0.25, -14.25, 0.20000002, -0.75, 16, 5.2, 0.5, 16.75, 5.2, 0.25, 16.5, 5.2, -0.75, 15.5, 5.2, -0.5, -12.5, 0.20000002, 15.75, -13.75, 0.20000002, 1, -15.5, 0.20000002, 1, -12.5, 0.20000002, 16.5, -99.5, 0.20000002, 16.5, -0.5, 5.2, -0.5, -0.5, 5.2, 0.5, 0.5, 5.2, 0.5, 0.5, 5.2, -0.5, -13, 0.20000002, 0.5, -1.5, 0.20000002, 1, -12, 0.20000002, 15, -10, 0.20000002, 15, -9.5, 0.20000002, 15.75, -0.75, 0.20000002, 1.5, -0.25, 0.20000002, -0.25, -0.25, 0.20000002, 0.25, 0.25, 0.20000002, 0.25, 0.25, 0.20000002, -0.25, 7.75, 0.20000002, 19.5, 9, 0.20000002, 20.25, 9.75, 0.20000002, 19.25, 1.5, 0.20000002, 0.75, 14.75, 0.20000002, 0.75, 11.25, 0.20000002, 19.25, 17, 0.20000002, 1.5, 23, 0.20000002, 9, 23, 0.20000002, 10.5, 15.5, 0.20000002, 1.5, 12.25, 0.20000002, 20.25, 23.75, 0.20000002, 11.25, -9.5, 0.20000002, 17.5, -10.25, 0.20000002, 18, 1, 0.20000002, 1.5, 24.5, 5.2, 10.5, 25.25, 5.2, 10.25, 25, 5.2, 9.25, 24, 5.2, 9.5, 12.25, 0.20000002, 21.75, 11.5, 0.20000002, 22.5, 25.5, 0.20000002, 11.5, 10.75, 0.20000002, 99.5, 99.5, 0.20000002, 99.5, 26.25, 0.20000002, 10.75, 10.75, 0.20000002, 22.5, -11.5, 5.2, 16, -11.5, 5.2, 17, -10.5, 5.2, 17, -10.5, 5.2, 16, -11.25, 0.20000002, 16.25, -11.25, 0.20000002, 16.75, -10.75, 0.20000002, 16.75, -10.75, 0.20000002, 16.25, -11, 0.20000002, 99.5, -11, 0.20000002, 18, -12.5, 0.20000002, 17.5, -99.5, 0.20000002, 99.5, 9.25, 0.20000002, 22, 10.5, 5.2, 21.5, 11.25, 5.2, 21.25, 11, 5.2, 20.25, 10, 5.2, 20.5)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 5), PackedInt32Array(5, 0, 4), PackedInt32Array(5, 4, 6), PackedInt32Array(5, 7, 3), PackedInt32Array(0, 8, 4), PackedInt32Array(9, 11, 10), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 7), PackedInt32Array(12, 7, 5), PackedInt32Array(12, 5, 13), PackedInt32Array(12, 13, 14), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(27, 28, 29), PackedInt32Array(29, 28, 1), PackedInt32Array(29, 1, 32), PackedInt32Array(32, 1, 2), PackedInt32Array(29, 32, 31), PackedInt32Array(30, 10, 33), PackedInt32Array(33, 10, 11), PackedInt32Array(29, 30, 34), PackedInt32Array(34, 30, 36), PackedInt32Array(34, 36, 35), PackedInt32Array(30, 33, 36), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 40), PackedInt32Array(43, 42, 41), PackedInt32Array(41, 44, 43), PackedInt32Array(43, 44, 40), PackedInt32Array(45, 14, 15), PackedInt32Array(48, 47, 46), PackedInt32Array(46, 39, 40), PackedInt32Array(44, 45, 40), PackedInt32Array(40, 45, 46), PackedInt32Array(46, 45, 48), PackedInt32Array(48, 45, 15), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(42, 53, 41), PackedInt32Array(41, 53, 35), PackedInt32Array(56, 55, 54), PackedInt32Array(53, 56, 35), PackedInt32Array(35, 56, 54), PackedInt32Array(35, 54, 34), PackedInt32Array(60, 59, 57), PackedInt32Array(57, 59, 58), PackedInt32Array(64, 63, 61), PackedInt32Array(61, 63, 62), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 68), PackedInt32Array(71, 70, 69), PackedInt32Array(69, 72, 71), PackedInt32Array(71, 72, 8), PackedInt32Array(8, 72, 4), PackedInt32Array(4, 72, 73), PackedInt32Array(77, 76, 74), PackedInt32Array(74, 76, 75), PackedInt32Array(25, 26, 78), PackedInt32Array(78, 26, 79), PackedInt32Array(80, 69, 70), PackedInt32Array(78, 79, 70), PackedInt32Array(70, 79, 83), PackedInt32Array(70, 83, 81), PackedInt32Array(81, 83, 82), PackedInt32Array(70, 81, 80), PackedInt32Array(87, 86, 84), PackedInt32Array(84, 86, 85), PackedInt32Array(90, 89, 88), PackedInt32Array(55, 56, 91), PackedInt32Array(91, 56, 92), PackedInt32Array(91, 92, 90), PackedInt32Array(91, 90, 88), PackedInt32Array(92, 93, 90), PackedInt32Array(95, 94, 38), PackedInt32Array(38, 94, 37), PackedInt32Array(97, 96, 92), PackedInt32Array(92, 96, 93), PackedInt32Array(93, 96, 98), PackedInt32Array(94, 95, 97), PackedInt32Array(97, 95, 96), PackedInt32Array(96, 99, 98), PackedInt32Array(88, 101, 100), PackedInt32Array(83, 102, 82), PackedInt32Array(82, 102, 100), PackedInt32Array(100, 102, 88), PackedInt32Array(88, 102, 91), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 106), PackedInt32Array(107, 98, 99), PackedInt32Array(107, 99, 108), PackedInt32Array(108, 99, 109), PackedInt32Array(109, 48, 108), PackedInt32Array(108, 48, 110), PackedInt32Array(110, 48, 111), PackedInt32Array(112, 47, 48), PackedInt32Array(109, 112, 48), PackedInt32Array(110, 113, 108), PackedInt32Array(117, 116, 114), PackedInt32Array(114, 116, 115), PackedInt32Array(121, 120, 118), PackedInt32Array(118, 120, 119), PackedInt32Array(123, 122, 124), PackedInt32Array(124, 122, 125), PackedInt32Array(124, 125, 73), PackedInt32Array(73, 72, 124), PackedInt32Array(89, 126, 88), PackedInt32Array(88, 126, 101), PackedInt32Array(101, 126, 123), PackedInt32Array(126, 113, 123), PackedInt32Array(123, 113, 110), PackedInt32Array(123, 110, 122), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 130)]
 cell_height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6bns"]
+albedo_texture = ExtResource("15_b8iw0")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 2
+stencil_mode = 3
+stencil_flags = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ov11"]
+size = Vector3(4, 2.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_npfg7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eywy4"]
+resource_name = "close_to_open"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.0943952, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fy5nl"]
+resource_name = "open_to_close"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0943952, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_twfsd"]
+_data = {
+&"RESET": SubResource("Animation_npfg7"),
+&"close_to_open": SubResource("Animation_eywy4"),
+&"open_to_close": SubResource("Animation_fy5nl")
+}
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_yqpnd"]
 material = ExtResource("14_n6bns")
@@ -237,13 +301,13 @@ size = Vector3(2, 1, 5)
 script = ExtResource("1_c735f")
 level_root = NodePath("..")
 player_spawn_point = NodePath("../PlayerSpawnPoint")
-start_lever = NodePath("../StartLever")
+start_lever = NodePath("../StartArea/StartLever")
 player = NodePath("../Player")
 collection_hole_move = NodePath("../DaHole/HoleMovement")
 countdown_timer_label = NodePath("../UI/Control/CountDown/TimerLabel")
 temp_gold_label = NodePath("../UI/Control/RoundGold/Label")
 player_hp_label = NodePath("../UI/Control/HP/Label")
-round_countdown = 10.0
+overtimer_speedup_mod = 0.1
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1162797919]
 
@@ -337,7 +401,7 @@ label_settings = SubResource("LabelSettings_yqpnd")
 horizontal_alignment = 1
 
 [node name="PlayerSpawnPoint" type="Node3D" parent="." unique_id=1586389328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -40)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerSpawnPoint" unique_id=1451365276]
 cast_shadow = 0
@@ -352,7 +416,7 @@ light_color = Color(0.93297535, 0.89204097, 0.88305235, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=733976788 instance=ExtResource("10_npfg7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -40)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=100971760 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 1
@@ -398,7 +462,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DaHole/HoleZone" unique_id=207626677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.478125, 0)
 shape = SubResource("CylinderShape3D_2ov11")
 
 [node name="InteriorCollider" type="CollisionShape3D" parent="DaHole" unique_id=1956638759]
@@ -542,52 +606,68 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, 5.5)
 [node name="Enemy" parent="Enemies" unique_id=542992792 instance=ExtResource("13_cxou5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1, -10)
 
-[node name="StartLever" type="Node3D" parent="." unique_id=921245176 node_paths=PackedStringArray("anim_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -38.5)
+[node name="StartArea" type="Node3D" parent="." unique_id=1342859026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="GatePivot" type="AnimatableBody3D" parent="StartArea" unique_id=615588015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7499999, 2.3, 4.75)
+
+[node name="Gate" type="CSGBox3D" parent="StartArea/GatePivot" unique_id=1094612262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, 0)
+size = Vector3(4, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_n6bns")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartArea/GatePivot" unique_id=1820902830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, 0)
+shape = SubResource("BoxShape3D_2ov11")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StartArea/GatePivot" unique_id=1041855577]
+libraries/ = SubResource("AnimationLibrary_twfsd")
+
+[node name="StartLever" type="Node3D" parent="StartArea" unique_id=921245176 node_paths=PackedStringArray("anim_player", "gate_anim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("14_kvgwe")
 anim_player = NodePath("AnimationPlayer")
+gate_anim = NodePath("../GatePivot/AnimationPlayer")
 
-[node name="Base" type="CSGMesh3D" parent="StartLever" unique_id=1682749392]
+[node name="Base" type="CSGMesh3D" parent="StartArea/StartLever" unique_id=1682749392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 use_collision = true
 collision_layer = 5
 mesh = SubResource("CylinderMesh_yqpnd")
 
-[node name="UpperBase" type="CSGMesh3D" parent="StartLever" unique_id=1346499669]
+[node name="UpperBase" type="CSGMesh3D" parent="StartArea/StartLever" unique_id=1346499669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, 0)
 use_collision = true
 collision_layer = 5
 mesh = SubResource("CylinderMesh_ya3bo")
 
-[node name="LeverHolder" type="CSGMesh3D" parent="StartLever" unique_id=1069149180]
+[node name="LeverHolder" type="CSGMesh3D" parent="StartArea/StartLever" unique_id=1069149180]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 use_collision = true
 collision_layer = 5
 mesh = SubResource("BoxMesh_b8iw0")
 
-[node name="Pivot" type="Node3D" parent="StartLever/LeverHolder" unique_id=1308819998]
+[node name="Pivot" type="Node3D" parent="StartArea/StartLever/LeverHolder" unique_id=1308819998]
 transform = Transform3D(0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="LeverHandle" type="CSGMesh3D" parent="StartLever/LeverHolder/Pivot" unique_id=603242814]
+[node name="LeverHandle" type="CSGMesh3D" parent="StartArea/StartLever/LeverHolder/Pivot" unique_id=603242814]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 use_collision = true
 collision_layer = 5
 mesh = SubResource("BoxMesh_c735f")
 
-[node name="StartArea" type="Area3D" parent="StartLever" unique_id=2052187394]
+[node name="StartArea" type="Area3D" parent="StartArea/StartLever" unique_id=2052187394]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StartLever/StartArea" unique_id=1783534614]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartArea/StartLever/StartArea" unique_id=1783534614]
 shape = SubResource("SphereShape3D_2ov11")
 debug_color = Color(0.90588236, 0.87058824, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StartLever" unique_id=1241760226]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StartArea/StartLever" unique_id=1241760226]
 libraries/ = SubResource("AnimationLibrary_npfg7")
-
-[node name="StartArea" type="Node3D" parent="." unique_id=1342859026]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StartArea" unique_id=2088189278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -599,6 +679,48 @@ material = ExtResource("17_ob7cl")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.5, 6)
 use_collision = true
 mesh = SubResource("PrismMesh_2ov11")
+material = ExtResource("17_ob7cl")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StartArea" unique_id=1505828151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -4.75)
+use_collision = true
+size = Vector3(10, 2.5, 0.5)
+material = ExtResource("17_ob7cl")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="StartArea" unique_id=916582907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 2.25, 4.75)
+use_collision = true
+size = Vector3(2.5, 2.5, 0.5)
+material = ExtResource("17_ob7cl")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="StartArea" unique_id=298307897]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.75, 2.25, 0)
+use_collision = true
+size = Vector3(9, 2.5, 0.5)
+material = ExtResource("17_ob7cl")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="StartArea" unique_id=830985711]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4.75, 2.25, 0)
+use_collision = true
+size = Vector3(9, 2.5, 0.5)
+material = ExtResource("17_ob7cl")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="StartArea" unique_id=1148793366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 2.25, 4.75)
+use_collision = true
+size = Vector3(2.5, 2.5, 0.5)
+material = ExtResource("17_ob7cl")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="StartArea" unique_id=431558731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 2.25, 4.75)
+use_collision = true
+size = Vector3(0.5, 2.5, 0.5)
+material = ExtResource("17_ob7cl")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="StartArea" unique_id=1671047390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 2.25, 4.75)
+use_collision = true
+size = Vector3(0.5, 2.5, 0.5)
 material = ExtResource("17_ob7cl")
 
 [connection signal="body_entered" from="DaHole/HoleZone" to="DaHole/Collection" method="_on_hole_zone_body_entered"]

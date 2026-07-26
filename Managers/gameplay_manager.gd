@@ -4,7 +4,6 @@ class_name GameplayManager
 @export_group("Refernces")
 @export var level_root : Node3D
 @export var player_spawn_point : Node3D
-@export var gate : Node3D #######
 @export var start_lever : StartLever
 @export var player : PlayerBehavior
 @export var collection_hole_move : Node
@@ -20,6 +19,7 @@ enum GameState{Upgrading, Countdown, Overtime}
 @export var stored_gold : int = 0
 @export var round_gold : int = 0
 
+@export var overtimer_speedup_mod : float = 1
 @export var round_countdown : float = 45
 @export var _round_timer : float
 @export var overtime : bool = false
@@ -59,8 +59,7 @@ func _process(delta: float) -> void :
 			countdown_timer_label.text = timer_string
 			
 		GameState.Overtime :
-			# Hole gets larger and faster
-			pass
+			collection_hole_move.follow_speed += (delta * overtimer_speedup_mod)
 	
 	if delayed_round_end_active :
 		if _delay_timer > 0 :
@@ -74,14 +73,14 @@ func _process(delta: float) -> void :
 func StartRound() :
 	current_state = GameState.Countdown
 	_round_timer = round_countdown
-	collection_hole_move.move_mode = collection_hole_move.MoveMode.Orbit
+	collection_hole_move.SwitchToOrbit()
 	
 	# OpenGate()
 	
 
 func EndRound(player_survive : bool) :
 	current_state = GameState.Upgrading
-	collection_hole_move.move_mode = collection_hole_move.MoveMode.Orbit
+	collection_hole_move.SwitchToOrbit()
 	if player_survive :
 		StoreGold(round_gold)
 	else :
@@ -98,8 +97,7 @@ func EndRound(player_survive : bool) :
 
 func StartOvertime() :
 	current_state = GameState.Overtime
-	collection_hole_move.move_mode = collection_hole_move.MoveMode.Follow
-	
+	collection_hole_move.SwitchToFollow()
 
 func CollectTempGold(gold : int) :
 	round_gold += gold

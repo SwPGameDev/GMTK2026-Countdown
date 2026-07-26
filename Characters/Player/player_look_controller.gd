@@ -71,7 +71,10 @@ func _process(delta: float) -> void:
 			look_target = blarg - player.global_position
 			
 		LookMode.Click :
-			var blarg : Vector3 = Vector3(player.player_combat.click_pos.x, player.global_position.y, player.player_combat.click_pos.z)
+			#var blarg : Vector3 = Vector3(player.player_combat.click_pos.x, player.global_position.y, player.player_combat.click_pos.z)
+			#look_target = blarg - player.global_position
+			
+			var blarg : Vector3 = Vector3(player.player_combat.mouse_pos.x, player.global_position.y, player.player_combat.mouse_pos.z)
 			look_target = blarg - player.global_position
 			
 		LookMode.Mouse :

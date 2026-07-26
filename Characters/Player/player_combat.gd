@@ -76,7 +76,9 @@ func _process(delta: float) -> void:
 		if not click_results.is_empty() :
 			click_pos = click_results.position
 		
-		if not on_cooldown :
+		if player.player_grab.holding_obj :
+			player.ReleaseGrab()
+		elif not on_cooldown and not player.player_grab.holding_obj :
 			SwingSword()
 			
 	

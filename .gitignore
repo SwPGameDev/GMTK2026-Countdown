@@ -21,3 +21,6 @@ mono_crash.*.json
 
 # Builds
 BUILDS/
+
+# TEMP AUDIO IGNORE
+Assets/Audio/
