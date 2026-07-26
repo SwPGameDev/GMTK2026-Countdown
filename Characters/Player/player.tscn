@@ -12,16 +12,85 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3h7jc"]
 friction = 0.1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yhol4"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_va6lm"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_u2wkb"]
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_r5ew0"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_va6lm"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u2wkb"]
+animation = &"crouch_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r5ew0"]
+animation = &"push_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b71o8"]
+animation = &"run_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_klx3t"]
+animation = &"swing_1"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_yhol4"]
+filter_enabled = true
+filters = ["", "metarig/Skeleton3D:forearm.L", "metarig/Skeleton3D:forearm.R", "metarig/Skeleton3D:hand.L", "metarig/Skeleton3D:hand.R", "metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:spine.004", "metarig/Skeleton3D:spine.005", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
+sync = true
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_klx3t"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x58m1"]
+animation = &"take_hit"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_b6jp0"]
+filter_enabled = true
+filters = ["metarig/Skeleton3D:forearm.L", "metarig/Skeleton3D:forearm.R", "metarig/Skeleton3D:hand.L", "metarig/Skeleton3D:hand.R", "metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:spine.004", "metarig/Skeleton3D:spine.005", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yqpnd"]
+graph_offset = Vector2(-1187.0143, 167.38042)
+nodes/output/position = Vector2(0, 176)
+nodes/move_blend/node = SubResource("AnimationNodeBlend2_u2wkb")
+nodes/move_blend/position = Vector2(-1008, 400)
+nodes/swing_one_shot/node = SubResource("AnimationNodeOneShot_yhol4")
+nodes/swing_one_shot/position = Vector2(-448, 144)
+nodes/swing/node = SubResource("AnimationNodeAnimation_klx3t")
+nodes/swing/position = Vector2(-704, 704)
+nodes/idle_loop/node = SubResource("AnimationNodeAnimation_va6lm")
+nodes/idle_loop/position = Vector2(-1312, 448)
+nodes/run_loop/node = SubResource("AnimationNodeAnimation_b71o8")
+nodes/run_loop/position = Vector2(-1280, 704)
+nodes/move_mode_blend/node = SubResource("AnimationNodeBlend3_r5ew0")
+nodes/move_mode_blend/position = Vector2(-672, 128)
+nodes/push_move_loop/node = SubResource("AnimationNodeAnimation_r5ew0")
+nodes/push_move_loop/position = Vector2(-1328, 224)
+nodes/take/node = SubResource("AnimationNodeAnimation_x58m1")
+nodes/take/position = Vector2(-416, 576)
+nodes/push_idle_loop/node = SubResource("AnimationNodeAnimation_u2wkb")
+nodes/push_idle_loop/position = Vector2(-1328, 0)
+nodes/push_blend/node = SubResource("AnimationNodeBlend2_va6lm")
+nodes/push_blend/position = Vector2(-992, 64)
+nodes/take_hit_oneshot/node = SubResource("AnimationNodeOneShot_b6jp0")
+nodes/take_hit_oneshot/position = Vector2(-208, 160)
+nodes/falling_loop/node = SubResource("AnimationNodeAnimation_yhol4")
+nodes/falling_loop/position = Vector2(-880, 704)
+nodes/swing_speed/node = SubResource("AnimationNodeTimeScale_klx3t")
+nodes/swing_speed/position = Vector2(-592, 448)
+node_connections = [&"output", 0, &"take_hit_oneshot", &"move_blend", 0, &"idle_loop", &"move_blend", 1, &"run_loop", &"swing_one_shot", 0, &"move_mode_blend", &"swing_one_shot", 1, &"swing_speed", &"move_mode_blend", 0, &"push_blend", &"move_mode_blend", 1, &"move_blend", &"move_mode_blend", 2, &"falling_loop", &"push_blend", 0, &"push_idle_loop", &"push_blend", 1, &"push_move_loop", &"take_hit_oneshot", 0, &"swing_one_shot", &"take_hit_oneshot", 1, &"take", &"swing_speed", 0, &"swing"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_yqpnd"]
 size = Vector3(2, 1.5, 1.5)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
-radius = 0.35
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2ov11"]
 radius = 1.75
 
-[node name="Player" type="RigidBody3D" unique_id=733976788 node_paths=PackedStringArray("mesh", "player_movement", "player_combat", "player_look", "player_grab") groups=["Player"]]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
+radius = 0.35
+
+[node name="Player" type="RigidBody3D" unique_id=733976788 node_paths=PackedStringArray("anim_tree", "mesh", "player_movement", "player_combat", "player_look", "player_grab") groups=["Player"]]
 physics_interpolation_mode = 1
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -29,12 +98,13 @@ axis_lock_angular_z = true
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_3h7jc")
 script = ExtResource("1_r5ew0")
+anim_tree = NodePath("AnimationTree")
 mesh = NodePath("knight_animations")
 player_movement = NodePath("Movement")
 player_combat = NodePath("Combat")
 player_look = NodePath("LookCon")
 player_grab = NodePath("Grab")
-hold_force = 5000.0
+move_speed = 6.0
 metadata/_custom_type_script = "uid://b3igsuhey1did"
 
 [node name="Movement" type="Node" parent="." unique_id=25793929 node_paths=PackedStringArray("player")]
@@ -52,7 +122,7 @@ hit_force = 50.0
 
 [node name="LookCon" type="Node" parent="." unique_id=352584327 node_paths=PackedStringArray("player")]
 script = ExtResource("6_x58m1")
-look_mode = 3
+look_mode = 4
 player = NodePath("..")
 
 [node name="Grab" type="Node" parent="." unique_id=1667453693 node_paths=PackedStringArray("player", "interact_sphere")]
@@ -60,7 +130,54 @@ script = ExtResource("7_b6jp0")
 player = NodePath("..")
 interact_sphere = NodePath("../InteractChecker")
 
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2037332439]
+root_node = NodePath("../knight_animations")
+tree_root = SubResource("AnimationNodeBlendTree_yqpnd")
+anim_player = NodePath("../knight_animations/AnimationPlayer")
+parameters/move_blend/blend_amount = 0.0
+parameters/swing_one_shot/active = false
+parameters/swing_one_shot/internal_active = false
+parameters/swing_one_shot/request = 0
+parameters/move_mode_blend/blend_amount = 0.0
+parameters/push_blend/blend_amount = 1.0
+parameters/take_hit_oneshot/active = false
+parameters/take_hit_oneshot/internal_active = false
+parameters/take_hit_oneshot/request = 0
+parameters/swing_speed/scale = 1.75
+
 [node name="knight_animations" parent="." unique_id=1405535657 instance=ExtResource("8_klx3t")]
+
+[node name="metarig" parent="knight_animations" index="0" unique_id=796216475]
+transform = Transform3D(0.6039414, -0.13154368, -0.7860984, 0.042652044, 0.99020714, -0.1329301, 0.7958864, 0.046753295, 0.6036378, 0.11999436, -0.15830809, -0.028480098)
+
+[node name="Skeleton3D" parent="knight_animations/metarig" index="0" unique_id=1984228359]
+bones/1/rotation = Quaternion(0.0145866545, 0.026261922, -0.0196919, 0.9993547)
+bones/2/rotation = Quaternion(0.111781895, 0.050407197, -0.03871631, 0.9916981)
+bones/3/rotation = Quaternion(-0.061740156, 0.051452704, -0.037361514, 0.9960647)
+bones/4/rotation = Quaternion(-0.022302998, 0.03284568, -0.004532785, 0.99920136)
+bones/5/rotation = Quaternion(0.031346675, 0.033018257, -0.0030302538, 0.99895847)
+bones/6/rotation = Quaternion(-0.5873363, -0.45221522, -0.298851, 0.60102046)
+bones/7/rotation = Quaternion(-0.18338902, 0.6333444, -0.5368184, 0.52637386)
+bones/8/rotation = Quaternion(0.22235134, -0.121850245, -0.091144115, 0.9630188)
+bones/9/rotation = Quaternion(0.025021836, -0.02427299, 0.06323671, 0.99738955)
+bones/10/rotation = Quaternion(-0.5608444, 0.5320334, 0.29799965, 0.55999136)
+bones/11/rotation = Quaternion(-0.40122566, -0.6831225, 0.37083027, 0.48460972)
+bones/12/rotation = Quaternion(0.3996086, 0.06399307, 0.092054255, 0.9098043)
+bones/13/rotation = Quaternion(0.24315505, 0.037929315, 0.078114755, 0.96609277)
+bones/19/rotation = Quaternion(0.7982296, 0.17494936, -0.39661643, 0.41823173)
+bones/20/rotation = Quaternion(0.43279567, 0.17808524, 0.056324493, 0.88193035)
+bones/21/rotation = Quaternion(-0.6889603, -0.20347331, 0.18393262, 0.6708958)
+bones/22/rotation = Quaternion(-0.07506376, 0.97367954, -0.04493467, -0.21046257)
+bones/23/rotation = Quaternion(0.92454964, -0.20757401, 0.07254296, 0.31122127)
+bones/24/rotation = Quaternion(0.49081248, -0.06719441, 0.02114678, 0.868413)
+bones/25/rotation = Quaternion(-0.7986628, 0.20371068, -0.32607013, 0.46294487)
+bones/26/rotation = Quaternion(0.04575757, 0.98088014, -0.034629352, 0.18596084)
+
+[node name="hand_R" parent="knight_animations/metarig/Skeleton3D" index="0" unique_id=610652638]
+transform = Transform3D(-0.8989947, -0.0014480501, 0.43795717, 0.39649206, -0.4274249, 0.81246656, 0.18601735, 0.90404975, 0.38482687, -0.52358717, 1.1452698, 0.35954446)
+
+[node name="AnimationPlayer" parent="knight_animations" index="1" unique_id=1010367515]
+active = false
 
 [node name="Hurtbox" type="Area3D" parent="knight_animations" unique_id=930870692]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
@@ -68,11 +185,7 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="knight_animations/Hurtbox" unique_id=1874717863]
 shape = SubResource("BoxShape3D_yqpnd")
-debug_color = Color(0.8, 0, 0.16470589, 0.54901963)
-
-[node name="Collider" type="CollisionShape3D" parent="." unique_id=1522535088]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_2ov11")
+debug_color = Color(0.8, 0, 0.16470589, 0.7411765)
 
 [node name="InteractChecker" type="Area3D" parent="." unique_id=514472229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -81,4 +194,10 @@ collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractChecker" unique_id=949060535]
 shape = SubResource("SphereShape3D_2ov11")
-debug_color = Color(0.7969186, 0.5628137, 1, 0.41960785)
+debug_color = Color(0.79607844, 0.5647059, 1, 0.8)
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1522535088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_2ov11")
+
+[editable path="knight_animations"]

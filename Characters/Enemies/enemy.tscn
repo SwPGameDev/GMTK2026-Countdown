@@ -36,6 +36,7 @@ mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_3h7jc")
 script = ExtResource("1_oooen")
 navigation_agent = NodePath("NavigationAgent3D")
+max_hp = 6.0
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=420431788]
 mesh = SubResource("CapsuleMesh_2ov11")

@@ -13,7 +13,7 @@ class_name PlayerLook
 enum LookMode {None, Holding, Click, Mouse, Move}
 @export var look_mode : LookMode
 
-@export var rotationSpeed : float = TAU * 2
+@export var rotation_speed : float = TAU * 2
 
 @export var player : PlayerBehavior
 
@@ -21,8 +21,8 @@ enum LookMode {None, Holding, Click, Mouse, Move}
 @export var is_attacking : bool = false
 @export var has_clicked : bool = false
 
-@export var look_at_click_length : float = 1
-var _look_at_click_timer : float = 0
+@export var look_at_mouse_length : float = 2
+var _look_at_mouse_timer : float = 0
 
 var look_target : Vector3
 var last_look_target : Vector3
@@ -37,13 +37,13 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack") :
 		has_clicked = true
-		_look_at_click_timer = 0
+		_look_at_mouse_timer = 0
 	
 	if has_clicked :
-		if _look_at_click_timer >= look_at_click_length :
+		if _look_at_mouse_timer >= look_at_mouse_length :
 			has_clicked = false
 		else :
-			_look_at_click_timer += delta
+			_look_at_mouse_timer += delta
 	
 	
 	
@@ -85,11 +85,21 @@ func _process(delta: float) -> void:
 				look_target = last_look_target
 	
 	if look_target != Vector3.ZERO :
+		var rotate_mod : float = 1
+		if look_mode == LookMode.Click :
+			rotate_mod = 5
 		var rotation_target : Quaternion = Basis.looking_at(look_target, Vector3.UP, true).orthonormalized()
 		# Only y axis rotation go here
-		var new_rotation : Quaternion = player.mesh.basis.orthonormalized().slerp(rotation_target, delta * rotationSpeed)
+		var new_rotation : Quaternion = player.mesh.basis.orthonormalized().slerp(rotation_target, delta * rotation_speed * rotate_mod)
 		
 		player.mesh.basis = new_rotation
+	
+	
+	
+	
+	
+	
+	
 	
 	last_look_target = player.mesh.basis.z
 	

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bjbjcv258br2y"]
+
+[resource]
+resource_name = "Leather"
+cull_mode = 2
+albedo_color = Color(0.562812, 0.24911962, 0.097662136, 1)
+roughness = 0.8
+stencil_mode = 3
+stencil_flags = 2

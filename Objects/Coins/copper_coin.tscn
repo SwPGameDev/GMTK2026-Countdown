@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dynqn2h06814d"]
+
+[ext_resource type="PackedScene" uid="uid://cvw4xnio3i54l" path="res://Assets/Art/Models/Coins/copperCoin.blend" id="1_7g7fh"]
+[ext_resource type="Script" uid="uid://jvgmayn6bcm" path="res://Objects/Coins/coin.gd" id="1_7hixg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ov11"]
+size = Vector3(0.15, 0.05, 0.15)
+
+[node name="CopperCoin" type="RigidBody3D" unique_id=782681485]
+script = ExtResource("1_7hixg")
+value = 1
+metadata/_custom_type_script = "uid://jvgmayn6bcm"
+
+[node name="mesh" parent="." unique_id=1070934828 instance=ExtResource("1_7g7fh")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=79456296]
+shape = SubResource("BoxShape3D_2ov11")

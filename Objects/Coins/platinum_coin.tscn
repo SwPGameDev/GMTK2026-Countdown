@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b6cj2htffluyr"]
+
+[ext_resource type="Script" uid="uid://jvgmayn6bcm" path="res://Objects/Coins/coin.gd" id="1_kgnnl"]
+[ext_resource type="PackedScene" uid="uid://bbe73oj35dwhx" path="res://Assets/Art/Models/Coins/platinumCoin.blend" id="2_ad1x6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_66iwr"]
+size = Vector3(0.15, 0.05, 0.15)
+
+[node name="platinum_coin" type="RigidBody3D" unique_id=1712087703]
+script = ExtResource("1_kgnnl")
+value = 100
+metadata/_custom_type_script = "uid://jvgmayn6bcm"
+
+[node name="mesh" parent="." unique_id=1298543215 instance=ExtResource("2_ad1x6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1352445597]
+shape = SubResource("BoxShape3D_66iwr")

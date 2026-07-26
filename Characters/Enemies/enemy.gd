@@ -16,9 +16,11 @@ class_name Enemy
 @export_group("Stats")
 @export var movement_speed: float = 4.0
 @export var max_hp : float = 4
-
+var is_dead : bool = false
 
 func _ready() -> void:
+	current_hp = max_hp
+	
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	
 	if debug_enabled :
@@ -66,37 +68,30 @@ func SpawnBox() :
 	# blah
 
 func Die() :
-	
-	print("OOF")
-	target = null
-	
-	
-	# Ragdoll
-	axis_lock_angular_x = false
-	axis_lock_angular_y = false
-	axis_lock_angular_z = false
-	
-	var random_angle: float = randf_range(0.0, TAU)
-	Vector2.from_angle(random_angle)
-	var rand_vect : Vector3
-	
-	
-	apply_central_impulse(Vector3.UP * randf_range(-50, 50))
-	
-	
-	
-	
-	navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
-	linear_velocity = Vector3.ZERO
-	angular_velocity = Vector3.ZERO
-	physics_material_override.friction = 1
-	
-	
-	
-	
-	if not has_spawned_box :
-		SpawnBox()
-	
+	if not is_dead :
+		is_dead = true
+		print("OOF")
+		target = null
+		
+		# Ragdoll
+		axis_lock_angular_x = false
+		axis_lock_angular_y = false
+		axis_lock_angular_z = false
+		
+		#var random_angle: float = randf_range(0.0, TAU)
+		#Vector2.from_angle(random_angle)
+		#var rand_vect : Vector3
+		
+		apply_central_impulse(Vector3.UP * randf_range(-50, 50))
+		
+		navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
+		linear_velocity = Vector3.ZERO
+		angular_velocity = Vector3.ZERO
+		physics_material_override.friction = 1
+		
+		if not has_spawned_box :
+			SpawnBox()
+		
 
 
 

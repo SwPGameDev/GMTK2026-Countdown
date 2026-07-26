@@ -10,9 +10,13 @@
 [ext_resource type="Material" uid="uid://cruloqftqxvaw" path="res://Assets/Art/Materials/ground_material.tres" id="7_n6bns"]
 [ext_resource type="Material" uid="uid://e6mq15osidom" path="res://Assets/Art/Materials/pillar_material.tres" id="9_npfg7"]
 [ext_resource type="PackedScene" uid="uid://dg5oxntuv0aub" path="res://Characters/Player/player.tscn" id="10_npfg7"]
+[ext_resource type="PackedScene" uid="uid://brliscvcw5wkx" path="res://Objects/valuables_box.tscn" id="11_c735f"]
 [ext_resource type="PackedScene" uid="uid://bhth35wwwljm0" path="res://Characters/Enemies/enemy.tscn" id="13_cxou5"]
-[ext_resource type="Script" uid="uid://dpjtb5mhujud5" path="res://Objects/valuable_box.gd" id="14_b8iw0"]
-[ext_resource type="Material" uid="uid://df0d4a0s8nsw1" path="res://Assets/Art/Materials/box_material.tres" id="19_ob7cl"]
+[ext_resource type="Script" uid="uid://dcytq74o8vmeu" path="res://Objects/Lever/start_lever.gd" id="14_kvgwe"]
+[ext_resource type="Material" uid="uid://c7obncubun81g" path="res://Assets/Art/Materials/stone_tile_mat.tres" id="14_n6bns"]
+[ext_resource type="Texture2D" uid="uid://dl1d2pip34ouq" path="res://Assets/Art/Textures/Retro Fantasy Textures/floor_wood_planks.png" id="15_b8iw0"]
+[ext_resource type="Texture2D" uid="uid://dae8tg7qfkifr" path="res://Assets/Art/Textures/Retro Fantasy Textures/window_square_closed.png" id="15_c735f"]
+[ext_resource type="Material" uid="uid://cejvg2snjxfm6" path="res://Assets/Art/Materials/alternative_stone_tile_mat.tres" id="17_ob7cl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yqpnd"]
 font = ExtResource("2_kvgwe")
@@ -115,24 +119,112 @@ vertices = PackedVector3Array(-15.5, 0.20000002, -2, -13.75, 0.20000002, -2, -5,
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 5), PackedInt32Array(5, 0, 4), PackedInt32Array(5, 4, 6), PackedInt32Array(5, 7, 3), PackedInt32Array(0, 8, 4), PackedInt32Array(9, 11, 10), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 7), PackedInt32Array(12, 7, 5), PackedInt32Array(12, 5, 13), PackedInt32Array(12, 13, 14), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(27, 28, 29), PackedInt32Array(29, 28, 1), PackedInt32Array(29, 1, 32), PackedInt32Array(32, 1, 2), PackedInt32Array(29, 32, 31), PackedInt32Array(30, 10, 33), PackedInt32Array(33, 10, 11), PackedInt32Array(29, 30, 34), PackedInt32Array(34, 30, 36), PackedInt32Array(34, 36, 35), PackedInt32Array(30, 33, 36), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 40), PackedInt32Array(43, 42, 41), PackedInt32Array(41, 44, 43), PackedInt32Array(43, 44, 40), PackedInt32Array(45, 14, 15), PackedInt32Array(48, 47, 46), PackedInt32Array(46, 39, 40), PackedInt32Array(44, 45, 40), PackedInt32Array(40, 45, 46), PackedInt32Array(46, 45, 48), PackedInt32Array(48, 45, 15), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(42, 53, 41), PackedInt32Array(41, 53, 35), PackedInt32Array(56, 55, 54), PackedInt32Array(53, 56, 35), PackedInt32Array(35, 56, 54), PackedInt32Array(35, 54, 34), PackedInt32Array(60, 59, 57), PackedInt32Array(57, 59, 58), PackedInt32Array(64, 63, 61), PackedInt32Array(61, 63, 62), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 68), PackedInt32Array(71, 70, 69), PackedInt32Array(69, 72, 71), PackedInt32Array(71, 72, 8), PackedInt32Array(8, 72, 4), PackedInt32Array(4, 72, 73), PackedInt32Array(77, 76, 74), PackedInt32Array(74, 76, 75), PackedInt32Array(25, 26, 78), PackedInt32Array(78, 26, 79), PackedInt32Array(80, 69, 70), PackedInt32Array(78, 79, 70), PackedInt32Array(70, 79, 83), PackedInt32Array(70, 83, 81), PackedInt32Array(81, 83, 82), PackedInt32Array(70, 81, 80), PackedInt32Array(87, 86, 84), PackedInt32Array(84, 86, 85), PackedInt32Array(90, 89, 88), PackedInt32Array(55, 56, 91), PackedInt32Array(91, 56, 92), PackedInt32Array(91, 92, 90), PackedInt32Array(91, 90, 88), PackedInt32Array(92, 93, 90), PackedInt32Array(95, 94, 38), PackedInt32Array(38, 94, 37), PackedInt32Array(97, 96, 92), PackedInt32Array(92, 96, 93), PackedInt32Array(93, 96, 98), PackedInt32Array(94, 95, 97), PackedInt32Array(97, 95, 96), PackedInt32Array(96, 99, 98), PackedInt32Array(88, 101, 100), PackedInt32Array(83, 102, 82), PackedInt32Array(82, 102, 100), PackedInt32Array(100, 102, 88), PackedInt32Array(88, 102, 91), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 106), PackedInt32Array(107, 98, 99), PackedInt32Array(107, 99, 108), PackedInt32Array(108, 99, 109), PackedInt32Array(109, 48, 108), PackedInt32Array(108, 48, 110), PackedInt32Array(110, 48, 111), PackedInt32Array(112, 47, 48), PackedInt32Array(109, 112, 48), PackedInt32Array(110, 113, 108), PackedInt32Array(117, 116, 114), PackedInt32Array(114, 116, 115), PackedInt32Array(121, 120, 118), PackedInt32Array(118, 120, 119), PackedInt32Array(123, 122, 124), PackedInt32Array(124, 122, 125), PackedInt32Array(124, 125, 73), PackedInt32Array(73, 72, 124), PackedInt32Array(89, 126, 88), PackedInt32Array(88, 126, 101), PackedInt32Array(101, 126, 123), PackedInt32Array(126, 113, 123), PackedInt32Array(123, 113, 110), PackedInt32Array(123, 110, 122), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 130)]
 cell_height = 0.1
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b8iw0"]
-rough = true
+[sub_resource type="CylinderMesh" id="CylinderMesh_yqpnd"]
+material = ExtResource("14_n6bns")
+height = 0.5
+radial_segments = 8
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2ov11"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_ya3bo"]
+material = ExtResource("14_n6bns")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.25
+radial_segments = 8
 
-[sub_resource type="BoxMesh" id="BoxMesh_6kjqo"]
-material = ExtResource("19_ob7cl")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c735f"]
+albedo_texture = ExtResource("15_c735f")
+uv1_scale = Vector3(3.5, 3.5, 3.5)
+uv1_offset = Vector3(0.5, 0, 0.5)
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_b8iw0"]
+material = SubResource("StandardMaterial3D_c735f")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvgwe"]
+albedo_texture = ExtResource("15_b8iw0")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_c735f"]
+material = SubResource("StandardMaterial3D_kvgwe")
+size = Vector3(0.15, 0.75, 0.15)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2ov11"]
+radius = 1.5
+
+[sub_resource type="Animation" id="Animation_kvgwe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeverHolder/Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.7853982)]
+}
+
+[sub_resource type="Animation" id="Animation_n6bns"]
+resource_name = "off_to_on"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeverHolder/Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.7853982), Vector3(0, 0, -0.7853982)]
+}
+
+[sub_resource type="Animation" id="Animation_ob7cl"]
+resource_name = "on_to_off"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeverHolder/Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.7853982), Vector3(0, 0, 0.7853982)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_npfg7"]
+_data = {
+&"RESET": SubResource("Animation_kvgwe"),
+&"off_to_on": SubResource("Animation_n6bns"),
+&"on_to_off": SubResource("Animation_ob7cl")
+}
+
+[sub_resource type="PrismMesh" id="PrismMesh_2ov11"]
+left_to_right = 1.0
+size = Vector3(2, 1, 5)
 
 [node name="LevelRoot" type="Node3D" unique_id=886676126]
 
-[node name="GamePlayManger" type="Node" parent="." unique_id=985011085 node_paths=PackedStringArray("player_spawn_point", "player", "collection_hole_move", "countdown_timer_label", "round_gold_label")]
+[node name="GamePlayManger" type="Node" parent="." unique_id=985011085 node_paths=PackedStringArray("player_spawn_point", "start_lever", "player", "collection_hole_move", "countdown_timer_label", "temp_gold_label")]
 unique_name_in_owner = true
 script = ExtResource("1_c735f")
 player_spawn_point = NodePath("../PlayerSpawnPoint")
+start_lever = NodePath("../StartLever")
 player = NodePath("../Player")
 collection_hole_move = NodePath("../DaHole/HoleMovement")
 countdown_timer_label = NodePath("../UI/Control/CountDown/TimerLabel")
-round_gold_label = NodePath("../UI/Control/RoundGold/Label")
+temp_gold_label = NodePath("../UI/Control/RoundGold/Label")
+round_countdown = 10.0
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1162797919]
 
@@ -166,7 +258,7 @@ offset_top = -12.0
 offset_right = 32.0
 offset_bottom = 64.0
 grow_horizontal = 2
-text = "45"
+text = "--"
 label_settings = SubResource("LabelSettings_yqpnd")
 horizontal_alignment = 1
 
@@ -195,12 +287,12 @@ offset_top = -12.0
 offset_right = 32.0
 offset_bottom = 64.0
 grow_horizontal = 2
-text = "45"
+text = "--"
 label_settings = SubResource("LabelSettings_yqpnd")
 horizontal_alignment = 1
 
 [node name="PlayerSpawnPoint" type="Node3D" parent="." unique_id=1586389328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerSpawnPoint" unique_id=1451365276]
 cast_shadow = 0
@@ -215,7 +307,7 @@ light_color = Color(0.93297535, 0.89204097, 0.88305235, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=733976788 instance=ExtResource("10_npfg7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=100971760 node_paths=PackedStringArray("target")]
 physics_interpolation_mode = 1
@@ -237,10 +329,11 @@ collision_layer = 2
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_wtb5e")
 
-[node name="HoleMovement" type="Node" parent="DaHole" unique_id=1921497303 node_paths=PackedStringArray("hole")]
+[node name="HoleMovement" type="Node" parent="DaHole" unique_id=1921497303 node_paths=PackedStringArray("hole", "target")]
 script = ExtResource("1_rhk1q")
 hole = NodePath("..")
 move_mode = 1
+target = NodePath("../../Player")
 rotate_speed = 0.5
 
 [node name="Collection" type="Node" parent="DaHole" unique_id=1686011434]
@@ -250,6 +343,12 @@ default_mask = 1
 interactable_layer = 5
 hole_layer = 2
 hole_mask = 2
+
+[node name="SpawnPos" type="Node3D" parent="DaHole" unique_id=848154540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9999999, 0)
+
+[node name="SpawnTarget" type="Node3D" parent="DaHole" unique_id=1676671871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="HoleZone" type="Area3D" parent="DaHole" unique_id=1361671167]
 collision_mask = 3
@@ -391,26 +490,72 @@ material = ExtResource("9_npfg7")
 
 [node name="Moveables" type="Node3D" parent="." unique_id=1860907]
 
-[node name="Box" type="RigidBody3D" parent="Moveables" unique_id=648846933]
+[node name="Box" parent="Moveables" unique_id=854241607 instance=ExtResource("11_c735f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, 5.5)
-collision_layer = 5
-mass = 20.0
-physics_material_override = SubResource("PhysicsMaterial_b8iw0")
-script = ExtResource("14_b8iw0")
-min_value = 1
-max_value = 3
-metadata/_custom_type_script = "uid://dpjtb5mhujud5"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Moveables/Box" unique_id=105064953]
-shape = SubResource("BoxShape3D_2ov11")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Moveables/Box" unique_id=468031755]
-mesh = SubResource("BoxMesh_6kjqo")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=395647122]
 
 [node name="Enemy" parent="Enemies" unique_id=542992792 instance=ExtResource("13_cxou5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1, -10)
+
+[node name="StartLever" type="Node3D" parent="." unique_id=921245176 node_paths=PackedStringArray("anim_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -38.5)
+script = ExtResource("14_kvgwe")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="Base" type="CSGMesh3D" parent="StartLever" unique_id=1682749392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+use_collision = true
+collision_layer = 5
+mesh = SubResource("CylinderMesh_yqpnd")
+
+[node name="UpperBase" type="CSGMesh3D" parent="StartLever" unique_id=1346499669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, 0)
+use_collision = true
+collision_layer = 5
+mesh = SubResource("CylinderMesh_ya3bo")
+
+[node name="LeverHolder" type="CSGMesh3D" parent="StartLever" unique_id=1069149180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+use_collision = true
+collision_layer = 5
+mesh = SubResource("BoxMesh_b8iw0")
+
+[node name="Pivot" type="Node3D" parent="StartLever/LeverHolder" unique_id=1308819998]
+transform = Transform3D(0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="LeverHandle" type="CSGMesh3D" parent="StartLever/LeverHolder/Pivot" unique_id=603242814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+use_collision = true
+collision_layer = 5
+mesh = SubResource("BoxMesh_c735f")
+
+[node name="StartArea" type="Area3D" parent="StartLever" unique_id=2052187394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartLever/StartArea" unique_id=1783534614]
+shape = SubResource("SphereShape3D_2ov11")
+debug_color = Color(0.90588236, 0.87058824, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StartLever" unique_id=1241760226]
+libraries/ = SubResource("AnimationLibrary_npfg7")
+
+[node name="StartArea" type="Node3D" parent="." unique_id=1342859026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StartArea" unique_id=2088189278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+use_collision = true
+size = Vector3(10, 1, 10)
+material = ExtResource("17_ob7cl")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="StartArea" unique_id=1342253747]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.5, 6)
+use_collision = true
+mesh = SubResource("PrismMesh_2ov11")
+material = ExtResource("17_ob7cl")
 
 [connection signal="body_entered" from="DaHole/HoleZone" to="DaHole/Collection" method="_on_hole_zone_body_entered"]
 [connection signal="body_exited" from="DaHole/HoleZone" to="DaHole/Collection" method="_on_hole_zone_body_exited"]

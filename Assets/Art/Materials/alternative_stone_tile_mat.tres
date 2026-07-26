@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cejvg2snjxfm6"]
+
+[ext_resource type="Texture2D" uid="uid://bmbc6xxtsenps" path="res://Assets/Art/Textures/Retro Fantasy Textures/floor_stone.png" id="1_ebn27"]
+
+[resource]
+albedo_texture = ExtResource("1_ebn27")
+uv1_triplanar = true
+texture_filter = 2

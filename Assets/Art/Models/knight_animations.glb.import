@@ -18550,7 +18550,7 @@ _subresources={
 "save_to_file/fallback_path": "",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",
-"settings/loop_mode": 1,
+"settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
@@ -20606,7 +20606,7 @@ _subresources={
 "save_to_file/fallback_path": "",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",
-"settings/loop_mode": 1,
+"settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
@@ -22662,7 +22662,7 @@ _subresources={
 "save_to_file/fallback_path": "",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",
-"settings/loop_mode": 1,
+"settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
@@ -30880,6 +30880,38 @@ _subresources={
 "slice_99/save_to_file/path": "",
 "slice_99/start_frame": 0,
 "slices/amount": 0
+}
+},
+"materials": {
+"Armor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Art/Materials/KnightMats/Armor.tres",
+"use_external/path": "uid://0tp8wecis5q7"
+},
+"Base": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Art/Materials/KnightMats/Base.tres",
+"use_external/path": "uid://ddvallwenec2a"
+},
+"Coif": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Art/Materials/KnightMats/Coif.tres",
+"use_external/path": "uid://drii4fvbct8a7"
+},
+"Dark": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Art/Materials/KnightMats/Dark.tres",
+"use_external/path": "uid://chnp73c8jeurm"
+},
+"Leather": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Art/Materials/KnightMats/Leather.tres",
+"use_external/path": "uid://bjbjcv258br2y"
+},
+"Plume": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Art/Materials/KnightMats/Plume.tres",
+"use_external/path": "uid://dlm8701eroo0g"
 }
 }
 }

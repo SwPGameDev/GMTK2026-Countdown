@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c7jjw4yp471yf"]
+
+[ext_resource type="Script" uid="uid://jvgmayn6bcm" path="res://Objects/Coins/coin.gd" id="1_0ubne"]
+[ext_resource type="PackedScene" uid="uid://f1f6l6xc4cad" path="res://Assets/Art/Models/Coins/silverCoin.blend" id="2_tgitw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_66iwr"]
+size = Vector3(0.15, 0.05, 0.15)
+
+[node name="silver_coin" type="RigidBody3D" unique_id=1956572933]
+script = ExtResource("1_0ubne")
+value = 5
+metadata/_custom_type_script = "uid://jvgmayn6bcm"
+
+[node name="mesh" parent="." unique_id=453766422 instance=ExtResource("2_tgitw")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=567598508]
+shape = SubResource("BoxShape3D_66iwr")

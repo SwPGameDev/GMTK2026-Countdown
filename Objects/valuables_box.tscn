@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://brliscvcw5wkx"]
+
+[ext_resource type="Script" uid="uid://dpjtb5mhujud5" path="res://Objects/valuable_box.gd" id="1_2trv7"]
+[ext_resource type="Material" uid="uid://df0d4a0s8nsw1" path="res://Assets/Art/Materials/box_material.tres" id="2_6xir7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b8iw0"]
+rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ov11"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6kjqo"]
+material = ExtResource("2_6xir7")
+
+[node name="Box" type="RigidBody3D" unique_id=854241607]
+collision_layer = 5
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_b8iw0")
+script = ExtResource("1_2trv7")
+min_value = 1
+max_value = 3
+metadata/_custom_type_script = "uid://dpjtb5mhujud5"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1045637185]
+shape = SubResource("BoxShape3D_2ov11")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=156137243]
+mesh = SubResource("BoxMesh_6kjqo")

@@ -18,17 +18,26 @@ func TryCollect(body : Node3D) :
 	
 	if body is ValueableBox :
 		var vb : ValueableBox = body
-		gameplay_manager.CollectGold(vb.value)
+		SpitOutCoin(vb.value)
 		vb.queue_free()
 	elif body is Enemy :
 		var enemy : Enemy = body
 		if not enemy.has_spawned_box :
-			enemy.SpawnBox()
+			SpitOutBox()
 		enemy.queue_free()
 	elif body is PlayerBehavior :
 		var player : PlayerBehavior = body
 		player.Die()
 		
+
+func SpitOutBox() :
+	# Spawn Box
+	# Box moves to node3d above hole
+	# random lateral force
+	pass
+
+func SpitOutCoin(coin_value : int) :
+	pass
 
 # Top Trigger
 func _on_hole_zone_body_entered(body: Node3D) -> void:

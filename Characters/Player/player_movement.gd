@@ -14,7 +14,6 @@ var holding_target_pos : Vector3
 enum MoveMode{None, Player, Grabbed}
 @export var move_mode : MoveMode
 
-
 var input_dir : Vector2
 
 var forward_relative : Vector3

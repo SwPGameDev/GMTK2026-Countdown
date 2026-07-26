@@ -1,0 +1,36 @@
+extends Node3D
+class_name StartLever
+
+@onready var gameplay_manger: GameplayManager = %GamePlayManger
+
+@export var anim_player : AnimationPlayer
+var flipped : bool = false
+
+var on_cooldown : bool = false
+@export var flip_cooldown : float = 2
+var _flip_timer : float = 0
+
+func _process(delta: float) -> void:
+	if on_cooldown :
+		_flip_timer += delta
+		if _flip_timer >= flip_cooldown :
+			on_cooldown = false
+			_flip_timer = 0
+
+func FlipLever() :
+	if not on_cooldown :
+		on_cooldown = true
+		var temp : bool = flipped
+		flipped = gameplay_manger.FlipLeverEvent()
+		
+		if temp != flipped :
+			if temp :
+				anim_player.play("on_to_off")
+				
+			else :
+				anim_player.play("off_to_on")
+
+func ForceResetLever() :
+	anim_player.play("on_to_off")
+	flipped = false
+	
