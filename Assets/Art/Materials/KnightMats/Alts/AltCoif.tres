@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cqmyjvvdpquhv"]
+
+[resource]
+resource_name = "Coif"
+cull_mode = 2
+albedo_color = Color(0.200531, 0.10708178, 1.2032688e-08, 1)
+metallic = 0.65
+metallic_specular = 0.25
+roughness = 0.75
+stencil_mode = 3
+stencil_flags = 2

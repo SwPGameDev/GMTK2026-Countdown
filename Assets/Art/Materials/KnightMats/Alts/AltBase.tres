@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c6mdkquthviym"]
+
+[resource]
+resource_name = "Base"
+cull_mode = 2
+albedo_color = Color(0.1349115, 0.10093766, 0.07113757, 1)
+roughness = 0.8
+stencil_mode = 3
+stencil_flags = 2

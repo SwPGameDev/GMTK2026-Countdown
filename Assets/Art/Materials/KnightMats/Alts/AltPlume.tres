@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ci3mqut38udtj"]
+
+[resource]
+resource_name = "Plume"
+cull_mode = 2
+albedo_color = Color(0.36333573, 0, 0.06459138, 1)
+metallic_specular = 0.3
+stencil_mode = 3
+stencil_flags = 2

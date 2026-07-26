@@ -7,16 +7,25 @@ class_name Enemy
 
 @export_group("Refernces")
 @export var navigation_agent: NavigationAgent3D
+@export var anim : AnimationPlayer
 
 @export_group("Tracking")
 @export var target : Node3D = null
 @export var current_hp : float
 @export var has_spawned_box : bool = false
+@export var is_dead : bool = false
+@export var in_range : bool
+@export var on_cooldown : bool
+
 
 @export_group("Stats")
 @export var movement_speed: float = 4.0
 @export var max_hp : float = 4
-var is_dead : bool = false
+@export var attack_cooldown : float = 1
+var _attack_cooldown_timer : float = 0
+
+
+
 
 func _ready() -> void:
 	current_hp = max_hp
@@ -27,10 +36,17 @@ func _ready() -> void:
 		target = debug_target
 	else :
 		TryGetTarget()
+	
+	anim.play("run_forward")
 
 func _process(_delta: float) -> void:
 	if target != null :
 		set_movement_target(target.global_position)
+	
+	if anim.is_playing() :
+		pass
+	else :
+		anim.play("run_forward")
 
 func _physics_process(_delta):
 	# Do not query when the map has never synchronized and is empty.
@@ -59,6 +75,13 @@ func TryGetTarget() :
 		target = player
 
 func TakeHit(damage : float) :
+	
+	var flip : int = randi_range(0, 1)
+	if flip == 0 :
+		anim.play("take_hit")
+	else :
+		anim.play("take_hit_2")
+	
 	current_hp -= damage
 	if current_hp <= 0 :
 		Die()

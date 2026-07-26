@@ -1,34 +1,23 @@
 [gd_scene format=3 uid="uid://bhth35wwwljm0"]
 
 [ext_resource type="Script" uid="uid://copk5ftvuawo6" path="res://Characters/Enemies/enemy.gd" id="1_oooen"]
-[ext_resource type="Material" uid="uid://2m6od2bngr61" path="res://Assets/Art/Materials/enemy_material.tres" id="2_p6hek"]
-[ext_resource type="Texture2D" uid="uid://54pqgwpl0ua8" path="res://Assets/Art/ProtoTextures/Dark/texture_01.png" id="3_dlowh"]
+[ext_resource type="PackedScene" uid="uid://cjlw7av3ddwyb" path="res://Assets/Art/Models/knight_animations.tscn" id="2_6288r"]
+[ext_resource type="Material" uid="uid://ucldy5scowog" path="res://Assets/Art/Materials/KnightMats/Alts/AltArmor.tres" id="3_ufh3i"]
+[ext_resource type="Material" uid="uid://cfxmet5qbysbm" path="res://Assets/Art/Materials/KnightMats/Alts/AltLeather.tres" id="4_ylejg"]
+[ext_resource type="Material" uid="uid://cqmyjvvdpquhv" path="res://Assets/Art/Materials/KnightMats/Alts/AltCoif.tres" id="5_731b2"]
+[ext_resource type="Material" uid="uid://c6mdkquthviym" path="res://Assets/Art/Materials/KnightMats/Alts/AltBase.tres" id="6_3heii"]
+[ext_resource type="Material" uid="uid://bwbsxn27b1uk3" path="res://Assets/Art/Materials/KnightMats/Alts/AltDark.tres" id="7_41bqi"]
+[ext_resource type="Material" uid="uid://ci3mqut38udtj" path="res://Assets/Art/Materials/KnightMats/Alts/AltPlume.tres" id="8_cwbm2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3h7jc"]
 friction = 0.1
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2ov11"]
-material = ExtResource("2_p6hek")
-radial_segments = 32
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npfg7"]
-albedo_texture = ExtResource("3_dlowh")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-texture_filter = 2
-stencil_mode = 3
-stencil_flags = 2
-
-[sub_resource type="BoxMesh" id="BoxMesh_yqpnd"]
-material = SubResource("StandardMaterial3D_npfg7")
-size = Vector3(0.7, 0.35, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yqpnd"]
 size = Vector3(0.9, 0.9, 0.9)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ov11"]
 
-[node name="Enemy" type="RigidBody3D" unique_id=542992792 node_paths=PackedStringArray("navigation_agent")]
+[node name="Enemy" type="RigidBody3D" unique_id=542992792 node_paths=PackedStringArray("navigation_agent", "anim")]
 physics_interpolation_mode = 1
 axis_lock_angular_x = true
 axis_lock_angular_z = true
@@ -36,23 +25,88 @@ mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_3h7jc")
 script = ExtResource("1_oooen")
 navigation_agent = NodePath("NavigationAgent3D")
+anim = NodePath("mesh/AnimationPlayer")
 max_hp = 6.0
 
-[node name="Mesh" type="MeshInstance3D" parent="." unique_id=420431788]
-mesh = SubResource("CapsuleMesh_2ov11")
+[node name="mesh" parent="." unique_id=1405535657 instance=ExtResource("2_6288r")]
 
-[node name="Face" type="MeshInstance3D" parent="Mesh" unique_id=616055168]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0.25)
-mesh = SubResource("BoxMesh_yqpnd")
+[node name="metarig" parent="mesh" index="0" unique_id=796216475]
+transform = Transform3D(0.635654, -0.1307907, -0.76081365, 0.04609285, 0.99021506, -0.13171662, 0.7705965, 0.04865814, 0.6354629, 0.12000947, -0.18421234, -0.036918554)
 
-[node name="Hurtbox" type="Area3D" parent="Mesh" unique_id=275739027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+[node name="Skeleton3D" parent="mesh/metarig" index="0" unique_id=1984228359]
+bones/1/rotation = Quaternion(0.021740673, 0.026641587, -0.018075597, 0.9992451)
+bones/2/rotation = Quaternion(0.12503457, 0.050719496, -0.034296576, 0.99026144)
+bones/3/rotation = Quaternion(-0.0483921, 0.05159838, -0.032959398, 0.99695015)
+bones/4/rotation = Quaternion(-0.04295459, 0.027232293, -0.0008572562, 0.99870545)
+bones/5/rotation = Quaternion(0.010697974, 0.02724346, 0.00038542433, 0.99957156)
+bones/6/rotation = Quaternion(-0.6160971, -0.4163643, -0.35259527, 0.5681037)
+bones/7/rotation = Quaternion(-0.36797234, 0.5316033, -0.67984354, 0.34613168)
+bones/8/rotation = Quaternion(0.32211128, -0.12193079, -0.13450052, 0.9291324)
+bones/9/rotation = Quaternion(0.14771587, -0.047533635, 0.047979042, 0.9867212)
+bones/10/rotation = Quaternion(-0.6081025, 0.47854558, 0.36069956, 0.5206739)
+bones/11/rotation = Quaternion(-0.5565278, -0.6399025, 0.4591067, 0.26461804)
+bones/12/rotation = Quaternion(0.47450125, 0.06962812, 0.12932523, 0.86791444)
+bones/13/rotation = Quaternion(0.41856134, 0.03143177, 0.07870028, 0.9042261)
+bones/19/rotation = Quaternion(0.7707429, 0.22315925, -0.36622185, 0.47120795)
+bones/20/rotation = Quaternion(0.47255826, 0.18433955, 0.06491897, 0.8593562)
+bones/21/rotation = Quaternion(-0.6843041, -0.22716649, 0.22154564, 0.65653706)
+bones/22/rotation = Quaternion(-0.075063795, 0.97367954, -0.044934757, -0.21046254)
+bones/23/rotation = Quaternion(0.9032919, -0.26525876, 0.0636725, 0.33113062)
+bones/24/rotation = Quaternion(0.53713685, -0.0674509, 0.02156352, 0.84051746)
+bones/25/rotation = Quaternion(-0.7980937, 0.24466379, -0.35607228, 0.41999847)
+bones/26/rotation = Quaternion(0.046917036, 0.98054814, -0.03860743, 0.1866382)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hurtbox" unique_id=1232126709]
+[node name="hand_R" parent="mesh/metarig/Skeleton3D" index="0" unique_id=610652638]
+transform = Transform3D(-0.903488, 0.261645, -0.3394862, -0.39647377, -0.20924988, 0.89388096, 0.1628421, 0.9422081, 0.29279035, -0.12064083, 0.9761936, 0.15740283)
+
+[node name="sword" parent="mesh/metarig/Skeleton3D/hand_R" index="0" unique_id=175616313]
+surface_material_override/0 = ExtResource("3_ufh3i")
+surface_material_override/1 = ExtResource("4_ylejg")
+
+[node name="belt" parent="mesh/metarig/Skeleton3D" index="1" unique_id=1709107714]
+surface_material_override/0 = ExtResource("4_ylejg")
+surface_material_override/1 = ExtResource("5_731b2")
+
+[node name="body" parent="mesh/metarig/Skeleton3D" index="2" unique_id=475949061]
+surface_material_override/0 = ExtResource("6_3heii")
+surface_material_override/1 = ExtResource("3_ufh3i")
+
+[node name="breastplate" parent="mesh/metarig/Skeleton3D" index="3" unique_id=110612631]
+surface_material_override/0 = ExtResource("3_ufh3i")
+surface_material_override/1 = ExtResource("4_ylejg")
+
+[node name="coif" parent="mesh/metarig/Skeleton3D" index="4" unique_id=233807715]
+surface_material_override/0 = ExtResource("5_731b2")
+
+[node name="helmet" parent="mesh/metarig/Skeleton3D" index="5" unique_id=932647862]
+surface_material_override/0 = ExtResource("3_ufh3i")
+surface_material_override/1 = ExtResource("7_41bqi")
+
+[node name="pauldron" parent="mesh/metarig/Skeleton3D" index="6" unique_id=1053868323]
+surface_material_override/0 = ExtResource("3_ufh3i")
+surface_material_override/1 = ExtResource("4_ylejg")
+
+[node name="plume" parent="mesh/metarig/Skeleton3D" index="7" unique_id=1406258691]
+surface_material_override/0 = ExtResource("8_cwbm2")
+
+[node name="vambrace" parent="mesh/metarig/Skeleton3D" index="8" unique_id=2038319192]
+surface_material_override/0 = ExtResource("3_ufh3i")
+surface_material_override/1 = ExtResource("4_ylejg")
+
+[node name="AnimationPlayer" parent="mesh" index="1" unique_id=1010367515]
+autoplay = &"idle"
+
+[node name="Hurtbox" type="Area3D" parent="mesh" unique_id=275739027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/Hurtbox" unique_id=1232126709]
 shape = SubResource("BoxShape3D_yqpnd")
 debug_color = Color(0.8, 0, 0.16470589, 0.54901963)
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=976303765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_2ov11")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2127849830]
+
+[editable path="mesh"]
